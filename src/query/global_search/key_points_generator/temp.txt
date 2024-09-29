@@ -1,0 +1,42 @@
+"""
+MATCH (n:`__Community__20240919`)
+WHERE n.summary is not NULL
+OPTIONAL MATCH path = (e:`__Entity__20240919`)-[*1..5]->(n)
+WHERE ALL(x IN nodes(path) WHERE SINGLE(y IN nodes(path) WHERE y = x))
+RETURN 
+    n.id AS community_id,
+    n.title AS title,
+    n.summary AS summary,
+    n.community_rank AS rating,
+    n.summary AS content,
+    n.level AS level,
+    collect(DISTINCT e.id) AS entities
+"""
+
+
+{
+    "points": [
+        {
+            "description": "The nighttime acoustic environment quality compliance rate in cities along the Yellow River Basin is targeted to reach 85% by 2025 [Data: Reports (1-36, 2-41)].",
+            "score": 85
+        },
+        {
+            "description": "Sound windows and other building protection measures are effective in mitigating traffic noise pollution on highways and urban roads [Data: Reports (1-62, 2-15)].",
+            "score": 80
+        },
+        {
+            "description": "The "海淀区公园噪声管理试行办法" mandates the involvement of the "区园林绿化部门" and "各文体活动团队负责人" in managing noise levels in parks, requiring adherence to the "公园文化活动文明责任书" [Data: Reports (1-59, 2-12)].",
+            "score": 75
+        },
+        {
+            "description": "The "成都市环境噪声污染防治工作方案（2020 － 2022 年）" guides noise pollution prevention efforts in Chengdu City, utilizing the "智慧工地平台" [Data: Reports (1-40, 2-36)].",
+            "score": 70
+        },
+        {
+            "description": "The "宣传警示工作" includes various sub-activities such as "典型事故案例," "炸街," "飙车," and "非法改装," utilizing multiple communication methods and producing important documents like "承诺书" and "监督举报电话" [Data: Reports (1-33, 2-51)].",
+            "score": 65
+        }
+    ]
+}
+
+'''json\n{\n    "points": [\n        {\n            "description": "The nighttime acoustic environment quality compliance rate in cities along the Yellow River Basin is targeted to reach 85% by 2025 [Data: Reports (1-36, 2-41)].",\n            "score": 80\n        },\n        {\n            "description": "Sound windows and other building protection measures are effective in mitigating traffic noise pollution on highways and urban roads [Data: Reports (1-62, 2-15)].",\n            "score": 75\n        },\n        {\n            "description": "The "宣传警示工作" (Public Awareness and Warning Campaign) includes various sub-activities and communication methods to raise awareness about noise pollution and related risks [Data: Reports (1-33, 2-51)].",\n            "score": 70\n        },\n        {\n            "description": "There are 21,706 acoustic environment monitoring points totaling 76,273 points, supported by automatic monitoring methods [Data: Reports (1-29, 2-40)].",\n            "score": 65\n        },\n        {\n            "description": "The "机动车非法改装治理和噪声污染防治规定" (Regulation on the Governance of Illegal Vehicle Modifications and Noise Pollution Prevention) was published by the government of Shandong Province to address illegal modifications and noise pollution [Data: Reports (1-86, 2-45)].",\n            "score": 60\n        }\n    ]\n}'''
