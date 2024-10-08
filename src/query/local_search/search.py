@@ -15,18 +15,18 @@ def _format_docs(documents: list[Document]) -> str:
 class LocalSearch:
     def __init__(
         self,
-        llm: BaseLLM,
+        chat_model: BaseLLM,
         prompt_builder: PromptBuilder,
         retriever: BaseRetriever,
     ):
-        self._llm = llm
+        self._chat_model = chat_model
         self._prompt_builder = prompt_builder
         self._retriever = retriever
 
     def __call__(self,query) -> Runnable:
         prompt, output_parser = self._prompt_builder.build()
 
-        base_chain = prompt | self._llm | output_parser
+        base_chain = prompt | self._chat_model | output_parser
 
         search_chain: Runnable = {
             "context_data": self._retriever | _format_docs,

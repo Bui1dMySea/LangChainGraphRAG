@@ -26,7 +26,7 @@ def num_tokens_from_string(string: str, model: str = "cl100k_base") -> int:
 def visualizeEntityTokenDistibution(graph: Neo4jGraph,user_id):
     entity_dist = graph.query(
        f"""
-    MATCH (d:Document__{user_id})
+    MATCH (d:Document{user_id})
     RETURN d.text AS text,
         count {{(d)-[:MENTIONS]->()}} AS entity_count
     """
@@ -44,11 +44,7 @@ def visualizeEntityTokenDistibution(graph: Neo4jGraph,user_id):
     plt.ylabel("Entity Count")
     plt.show()
     plt.savefig('entity_token_distribution.png')
-    
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 def visualizeCommunityEntityDistribution(graph: Neo4jGraph, user_id):
     # 查询每个层次的社区包含的实体的数量

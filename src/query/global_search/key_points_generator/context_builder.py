@@ -47,7 +47,7 @@ class CommunityReportContextBuilder:
 
     def get_df_entities(self) -> pd.DataFrame:
         cypher_query = f"""
-            MATCH (e:`__Entity__{self._id}`), (t:`Document__{self._id}`)
+            MATCH (e:`__Entity__{self._id}`), (t:`Document{self._id}`)
             WHERE t.text CONTAINS e.id
             WITH e.id AS id, COLLECT(t.id) AS text_unit_ids
             RETURN id, text_unit_ids
@@ -58,11 +58,12 @@ class CommunityReportContextBuilder:
         return pd.DataFrame.from_records(self._graph.query(cypher_query))
         
     # 暂时把content设置成summary
+    # TODO:这里的跳数可能需要调整
     def get_df_reports(self):
         cypher_query = f"""
             match (n:`__Community__{self._id}`) 
             where n.summary is not NULL 
-            optional match path = (e:`__Entity__{self._id}`)-[*1..3]->(n) //TODO:这里的关系可能需要调整
+            optional match path = (e:`__Entity__{self._id}`)-[*1..3]->(n)
             WHERE ALL(x IN nodes(path) WHERE SINGLE(y IN nodes(path) WHERE y = x))
             RETURN 
                 n.id AS community_id,
@@ -110,7 +111,6 @@ class CommunityReportContextBuilder:
             # we would try to combine multiple
             # reports into a single document
             # as long as we do not exceed the token limit
-
             report_str = _REPORT_TEMPLATE.format(
                 report_id=report.id,
                 title=report.title,
