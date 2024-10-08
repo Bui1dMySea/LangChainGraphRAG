@@ -2,7 +2,7 @@ import operator
 from functools import partial
 
 from langchain_core.documents import Document
-from langchain_core.language_models import BaseLLM
+from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.runnables import Runnable, RunnableLambda
 
 from ..key_points_generator.utils import KeyPointsResult
@@ -28,11 +28,11 @@ def _kp_result_to_docs(
 class KeyPointsAggregator:
     def __init__(
         self,
-        llm: BaseLLM,
+        chat_model: BaseChatModel,
         prompt_builder: PromptBuilder,
         context_builder: KeyPointsContextBuilder,
     ):
-        self._llm = llm
+        self._chat_model = chat_model
         self._prompt_builder = prompt_builder
         self._context_builder = context_builder
 
@@ -43,7 +43,7 @@ class KeyPointsAggregator:
         )
 
         prompt, output_parser = self._prompt_builder.build()
-        base_chain = prompt | self._llm | output_parser
+        base_chain = prompt | self._chat_model | output_parser  # TODO:异常处理
 
         search_chain: Runnable = {
             "report_data": operator.itemgetter("report_data")

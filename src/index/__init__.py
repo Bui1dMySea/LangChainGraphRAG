@@ -1,5 +1,5 @@
-from .api_index import llm_create_index
+from .api_index import ApiIndex
 
 __all__ = [
-    "llm_create_index"
+    "ApiIndex"
 ]

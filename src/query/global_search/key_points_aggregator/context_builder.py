@@ -18,7 +18,6 @@ Importance Score: {score}
 
 _LOGGER = logging.getLogger(__name__)
 
-
 class KeyPointsContextBuilder:
     def __init__(
         self,

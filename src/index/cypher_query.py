@@ -4,24 +4,25 @@ class CypherQuery:
     def __init__(self,graph):
         self.graph = graph
 
-    def set_entity(self,user_id):
+    def set_entity(self,uuid=None):
         self.graph.query(
             f"""
                 MATCH (n:`__Entity__`)
                 REMOVE n:`__Entity__`
-                SET n:`__Entity__{user_id}`
+                SET n:`__Entity__{uuid}`
             """
         )
         
-    def set_document(self,user_id):
+    def set_document(self,uuid=None):
         self.graph.query(
             f"""
                 MATCH (n:`Document`)
                 REMOVE n:`Document`
-                SET n:`Document__{user_id}`
+                SET n:`Document{uuid}`
             """
         )
     
+    # FIXME: 注册gds.graph时也要加上uuid,不然可能导致多进程误删除
     def drop_entites(self):
         # 删除名字为entities的图
         try:
@@ -32,7 +33,8 @@ class CypherQuery:
             )
         except:
             print("`entities` does not exist")
-            
+    
+    # FIXME: 注册gds.graph时也要加上uuid,不然可能导致多进程误删除       
     def drop_communities(self):        
         try:
             self.graph.query(
@@ -44,9 +46,9 @@ class CypherQuery:
             print("`communities` does not exist")
             
     # 社区检测与聚类分析
-    def detect(self,user_id,word_edit_distance):
+    def detect(self,uuid,word_edit_distance):
         return self.graph.query(
-            f"""MATCH (e:`__Entity__{user_id}`)
+            f"""MATCH (e:`__Entity__{uuid}`)
             WHERE size(e.id) > 4 // longer than 4 characters
             WITH e.wcc AS community, collect(e) AS nodes, count(*) AS count
             WHERE count > 1
@@ -79,11 +81,11 @@ class CypherQuery:
             """, params={'distance': word_edit_distance}
         )
         
-    def add_constraints_for_community(self,user_id):
-        self.graph.query(f"CREATE CONSTRAINT IF NOT EXISTS FOR (c:`__Community__{user_id}`) REQUIRE c.id IS UNIQUE;")
+    def add_constraints_for_community(self,uuid=None):
+        self.graph.query(f"CREATE CONSTRAINT IF NOT EXISTS FOR (c:`__Community__{uuid}`) REQUIRE c.id IS UNIQUE;")
     
     # 构造层次聚类
-    def constructing_hierarchical_clustering(self,user_id):
+    def constructing_hierarchical_clustering(self,uuid=None):
         return self.graph.query("""
                 MATCH (e:`{entity_label}`)
                 UNWIND range(0, size(e.communities) - 1 , 1) AS index
@@ -108,42 +110,42 @@ class CypherQuery:
                 RETURN count(*) AS count_1
                 }}
                 RETURN count(*)
-            """.format(entity_label=f"__Entity__{user_id}",community_label=f"__Community__{user_id}")
+            """.format(entity_label=f"__Entity__{uuid}",community_label=f"__Community__{uuid}")
         )
     
-    def set_community_rank(self,user_id):
+    def set_community_rank(self,uuid=None):
         self.graph.query(f"""
-            MATCH (c:`__Community__{user_id}`)<-[:IN_COMMUNITY*]-(:`__Entity__{user_id}`)<-[:MENTIONS]-(d:`Document__{user_id}`) // 匹配社区文档
+            MATCH (c:`__Community__{uuid}`)<-[:IN_COMMUNITY*]-(:`__Entity__{uuid}`)<-[:MENTIONS]-(d:`Document{uuid}`) // 匹配社区文档
             WITH c, count(distinct d) AS rank   //  计算每个社区包含的不同的文档数量作为社区的排名
             SET c.community_rank = rank;    // 设置社区排名
             """
         )
         
-    def set_node_degree(self,user_id):
+    def set_node_degree(self,uuid=None):
         node_degree_query = f"""
             MATCH (n)
-            WHERE ANY(label IN labels(n) WHERE label ENDS WITH '_{user_id}')
+            WHERE ANY(label IN labels(n) WHERE label ENDS WITH '{uuid}')
             SET n.degree = apoc.node.degree(n)
             RETURN count(n) AS modified_nodes;
         """
         self.graph.query(node_degree_query)
     
-    def set_relationship_degree(self,user_id):
+    def set_relationship_degree(self,uuid=None):
         relationship_degree_query = f"""
             MATCH (n) 
-            WHERE n.degree is not NULL and ANY(label IN labels(n) WHERE label ENDS WITH '_{user_id}')
+            WHERE n.degree is not NULL and ANY(label IN labels(n) WHERE label ENDS WITH '{uuid}')
             WITH n as source
             MATCH (source)-[r]->(target)
-            WHERE target.degree is not null and ANY(label IN labels(target) WHERE label ENDS WITH '_{user_id}')
+            WHERE target.degree is not null and ANY(label IN labels(target) WHERE label ENDS WITH '{uuid}')
             SET r.source_degree=source.degree,r.target_degree=target.degree,r.rank=source.degree+target.degree
             RETURN COUNT(r) AS modified_relationships; // 返回被修改的边的数量
         """
         self.graph.query(relationship_degree_query)
     
-    def set_text_unit_ids(self,user_id):
+    def set_text_unit_ids(self,uuid=None):
         text_unit_ids_query = f"""
-            MATCH (n:`__Entity__{user_id}`)
-            MATCH (p:`Document__{user_id}`)
+            MATCH (n:`__Entity__{uuid}`)
+            MATCH (p:`Document{uuid}`)
             WHERE p.text IS NOT NULL
             WITH n, collect(p) AS text_units
             UNWIND text_units AS text_unit
@@ -155,27 +157,27 @@ class CypherQuery:
         """
         self.graph.query(text_unit_ids_query)
     
-    def set_relationship_source_and_target(self,user_id):
+    def set_relationship_source_and_target(self,uuid=None):
         self.graph.query(
             f"""
-            MATCH (n:`__Entity__{user_id}`)-[r]->(m:`__Entity__{user_id}`)
+            MATCH (n:`__Entity__{uuid}`)-[r]->(m:`__Entity__{uuid}`)
             WITH n,r,m
             SET r.source = n.id, r.target = m.id
             RETURN count(r) AS modified_relationships
             """
         )
     
-    def set_communities(self,user_id):
+    def set_communities(self,uuid=None):
         self.graph.query(
             f"""
-            MATCH (n:`__Entity__{user_id}`)-[:IN_COMMUNITY*]->(c:`__Community__{user_id}`)
+            MATCH (n:`__Entity__{uuid}`)-[:IN_COMMUNITY*]->(c:`__Community__{uuid}`)
             WITH n, collect(c.id) AS community_ids
             SET n.communities = community_ids
             RETURN count(n) AS modified_nodes;
             """
         )
     
-    def get_community_info(self,user_id):
+    def get_community_info(self,user_id=None):
         return self.graph.query("""
             MATCH (c:`{community_label}`)<-[:IN_COMMUNITY*]-(e:`{entity_label}`) // 匹配社区实体
             // WHERE c.level in [1]
@@ -191,11 +193,11 @@ class CypherQuery:
             """.format(entity_label=f"__Entity__{user_id}", community_label=f"__Community__{user_id}")
         )
     
-    def store_info(self,user_id,info):
+    def store_info(self,info,uuid=None):
         self.graph.query(
             f"""
                 UNWIND $info AS info
-                MATCH (c:`__Community__{user_id}` {{id: info.community}})
+                MATCH (c:`__Community__{uuid}` {{id: info.community}})
                 SET c.summary = info.summary,c.title = info.title
             """, params={"info": info}
         )

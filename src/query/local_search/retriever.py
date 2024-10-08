@@ -10,7 +10,6 @@ class LocalSearchRetriever(BaseRetriever):
     context_selector: ContextSelector
     context_builder: ContextBuilder
     graph: VectorStore
-    # artifacts: IndexerArtifacts
 
     def _get_relevant_documents(
         self,
@@ -20,7 +19,6 @@ class LocalSearchRetriever(BaseRetriever):
     ) -> list[Document]:
         context_selection_result = self.context_selector.run(
             query=query,
-            # artifacts=self.artifacts,
             graph=self.graph,
         )
 

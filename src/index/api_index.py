@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from typing import  List
+from typing import  Dict, List
 from tqdm.asyncio import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -11,284 +11,280 @@ from langchain_community.vectorstores import Neo4jVector
 from langchain_community.graphs import Neo4jGraph
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_experimental.graph_transformers import LLMGraphTransformer
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_text_splitters.base import TextSplitter
+from langchain_core.embeddings.embeddings import Embeddings
 
 # utils
-from .utils import num_tokens_from_string,create_prompt,process_text,entity_resolution,process_communities,process_summaries
+from .utils import num_tokens_from_string,create_prompt,process_text,entity_resolution,process_communities,process_summaries,countNodesMerged
+from ..utils.logger import create_rotating_logger
+from logging import Logger
 from graphdatascience import GraphDataScience
 from .cypher_query import CypherQuery
-
-# doc2ppt
-from algo.chunk.slide_window_method import SentenceSlidingWindowChunkSplitter
-from const import env
-from algo.embedding.embed import LangChainEmbeddings
 
 # prompt
 from .prompts import SystemPrompts, UserPrompts
 # hf
 from transformers import AutoTokenizer
 # pydantic models
-from .pydantic_models import Disambiguate, DuplicateEntities, GetTitle
+from .pydantic_models import Disambiguate, GetTitle
 
-# 获取当前文件（kdb_operation.py）的绝对路径
-current_file_path = os.path.abspath(__file__)
-# 获取core目录的绝对路径
-core_directory = os.path.abspath(os.path.join(os.path.dirname(current_file_path), '../../..'))
-# 构建到tokenizer目录的绝对路径
-tokenizer_dir_path = os.path.join(core_directory, 'algo', 'embedding', 'tokenizer')
+COMMUNITY_TEMPLEATE = """Based on the provided nodes and relationships that belong to the same graph community,
+        generate a natural language summary of the provided information:
+        {community_info}
 
-def llm_create_index(documents: List[str],graph:Neo4jGraph, user_id: str):
-    tokenizer = AutoTokenizer.from_pretrained(tokenizer_dir_path)
-    splitter = SentenceSlidingWindowChunkSplitter.from_huggingface_tokenizer(tokenizer, sliding_chunk_size=500, sliding_distance=0)
-    cypherQuery = CypherQuery(graph=graph)
-    data = []
-    for doc in documents:
-        chunks = []
-        parts = doc.split('\n')
-        title = parts[0]
-        texts = '\n'.join(parts[1:])
-        chunks.extend(splitter.split_text(texts))
-        for chunk in chunks:
-            data.append({"title": title, "text": chunk})
-    # df
-    df_data = pd.DataFrame(data)
-    texts = [f"{row['title']} {row['text']}" for index,row in df_data.iterrows()]
-    openai = ChatOpenAI(model=env.MODEL_NAME,base_url=env.BASE_URL, api_key=env.API_KEY)
-    llm_transformer = LLMGraphTransformer(
-        llm=openai,
-        node_properties=["description"],
-        relationship_properties=["description"],
-        prompt=create_prompt(env.MODEL_NAME),
-    )
-    # total_tokens = sum([num_tokens_from_string(text) for text in texts])
+        Summary:"""  # noqa: E501
+
+community_prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "Given an input triples, generate the information summary. No pre-amble.",
+        ),
+        ("human", COMMUNITY_TEMPLEATE),
+    ]
+)
+
+TITLE_TEMPLATE = """Given the following summary, provide a title that best represents the content:
+        {summary}
+        
+        Title:"""
+        
+title_prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "Given a summary, generate a title that best represents the content. No pre-amble.",
+        ),
+        ("human", TITLE_TEMPLATE),
+    ]
+)
+
+
+class ApiIndex(object):
+    def __init__(
+        self,
+        graph:Neo4jGraph,
+        chat_model:BaseChatModel,
+        embedding:Embeddings,
+        splitter:TextSplitter,
+        gds:GraphDataScience,
+        logger:Logger=None,
+        max_workers:int=4,
+        gds_similarity_threshold:float=0.95,
+        word_edit_distance:int = 3,
+        uuid:str="",
+    ):
+        self.graph = graph
+        self.chat_model = chat_model
+        self.llm_transformer = LLMGraphTransformer(
+            llm=chat_model,
+            node_properties=["description"],
+            relationship_properties=["description"],
+            prompt=create_prompt(chat_model.model_name),  
+        )
+        self.embedding = embedding
+        self.splitter = splitter
+        self.gds = gds
+        self.cypherQuery = CypherQuery(graph=graph)
+        if not logger:
+            self.logger = create_rotating_logger("index")
+        else:
+            self.logger = logger
+        
+        self.MAX_WORKERS = max_workers
+        self.GDS_SIMILARITY_THRESHOLD = gds_similarity_threshold
+        self.WORD_EDIT_DISTANCE = word_edit_distance
+        self.uuid = uuid
+        
+    def _preprocess(self,documents:List[Dict[str,str]]):
+        self.logger("Chunking documents")
+        data = []
+        for document in documents:
+            title,text = document['title'],document['text']
+            chunks = self.splitter.split_text(text)
+            for chunk in chunks:
+                data.append({"title": title, "text": chunk})
+
+        return pd.DataFrame(data)
+        
+    def create_index(self,documents:List[str]):
+        data = self._preprocess(documents)
+        graph_documents = []
     
-    MAX_WORKERS = env.MAX_WORKERS
-    
-    graph_documents = []
-    
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        # Submitting all tasks and creating a list of future objects
-        futures = [executor.submit(process_text, f"{row['title']} {row['text']}", llm_transformer) for i, row in df_data.iterrows()]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
-            asyn_graph_document = future.result()
-            graph_documents.extend(asyn_graph_document)
-    
-    for graph_document in graph_documents:
-        for node in graph_document.nodes:
-            node.type = node.type + f"__{user_id}"
-            # node.properties["user_id"] = user_id
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            # Submitting all tasks and creating a list of future objects
+            futures = [executor.submit(process_text, f"{row['title']} {row['text']}", self.llm_transformer) for i, row in data.iterrows()]
+            for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
+                graph_document = future.result()
+                graph_documents.extend(graph_document)
+        
+        for graph_document in graph_documents:
+            for node in graph_document.nodes:
+                node.type = node.type + f"{self.uuid}"
+
         for relationship in graph_document.relationships:
-            relationship.type = relationship.type + f"_{user_id}"
-            relationship.source.type += f"_{user_id}"
-            relationship.target.type += f"_{user_id}"
+            relationship.type = relationship.type + f"{self.uuid}"
+            relationship.source.type += f"{self.uuid}"
+            relationship.target.type += f"{self.uuid}"
+            
+        # 将结点和关系存入图数据库
+        self.graph.add_graph_documents(
+            graph_documents,
+            baseEntityLabel=True,
+            include_source=True
+        )
+        
+        # 查询所有标签是__Entity__的结点，并修改成__Entity__+用户id
+        self.cypherQuery.set_entity(self.uuid)
+        # 查询所有标签是Document的结点，并修改成Document+用户id
+        self.cypherQuery.set_document(self.uuid)
+        
+        self.graph.refresh_schema()
+        Neo4jVector.from_existing_graph(
+            self.embedding,
+            node_label=f'__Entity__{self.uuid}',
+            text_node_properties=['id', 'description'],
+            index_name=f"{self.uuid}" if (self.uuid != None and self.uuid != "") else "vector",
+            embedding_node_property='embedding',
+            graph=self.graph,
+        )
+        
+        self.cypherQuery.drop_entites()
+        
+        # 1.create the k-nearest neighbor graph
+        G, _ = self.gds.graph.project(
+            "entities",  # Graph name   # FIXME: 注册gds.graph时也要加上uuid,不然可能导致多进程误删除
+            f"__Entity__{self.uuid}",  # Node projection
+            "*",  # Relationship projection
+            nodeProperties=["embedding"]  # Configuration parameters
+        )
+        # 2.algorithm: k-nearest neighbors
+        self.gds.knn.mutate(
+            G,
+            nodeProperties=['embedding'],
+            mutateRelationshipType='SIMILAR',
+            mutateProperty='score',
+            similarityCutoff=self.GDS_SIMILARITY_THRESHOLD,
+        )
+        # 3.store graph with weak connected components
+        self.gds.wcc.write(
+            G,
+            writeProperty="wcc",
+            relationshipTypes=["SIMILAR"]
+        )
+        # 4. KEY:社区检测与聚类分析
+        
+        potential_duplicate_candidates = self.cypherQuery.detect(self.uuid,self.WORD_EDIT_DISTANCE)
+        extraction_llm = self.chat_model.with_structured_output(Disambiguate)
+        extraction_prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    SystemPrompts.IDENTIFY_SYSTEM_PROMPT,
+                ),
+                (
+                    "human",
+                    UserPrompts.IDENTIFY_USER_PROMPT,   # noqa: E501,
+                ),
+            ]
+        )
+        
+        extraction_chain = extraction_prompt | extraction_llm
     
-    # 将结点和关系存入图数据库
-    graph.add_graph_documents(
-        graph_documents,
-        baseEntityLabel=True,
-        include_source=True
-    )
-    
-    # 查询所有标签是__Entity__的结点，并修改成__Entity__+用户id
-    cypherQuery.set_entity(user_id)
-    
-    # 查询所有标签是Document的结点，并修改成Document+用户id
-    cypherQuery.set_document(user_id)
-    
-    graph.refresh_schema()
-    
-    # FIXME：项目中每个用户需要关闭实例后需要删除索引
-    # graph.query(f"DROP INDEX `{user_id}` IF EXISTS")
-    # graph.query(f"MATCH (n) WHERE ANY(label IN labels(n) WHERE label ENDS WITH '__{user_id}')")
+        merged_entities = []
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            # Submitting all tasks and creating a list of future objects
+            futures = [executor.submit(entity_resolution, el['combinedResult'],extraction_chain) for el in potential_duplicate_candidates]
 
-    url = env.BGE_EMBEDDING_URL
-    
-    embedding = LangChainEmbeddings(url)
-    
-    Neo4jVector.from_existing_graph(
-        embedding,
-        node_label=f'__Entity__{user_id}',
-        text_node_properties=['id', 'description'],
-        index_name=f"{user_id}",
-        embedding_node_property='embedding',
-        graph=graph,
-    )
-    
-    # project graph
-    # Graph Data Science (GDS) library
-    gds = GraphDataScience(
-        env.NEO4J_URI,
-        auth=(env.NEO4J_USER, env.NEO4J_PASSWORD)
-    )
-    
-    cypherQuery.drop_entites()
-    
-    # 1.create the k-nearest neighbor graph
-    G, result = gds.graph.project(
-        "entities",  # Graph name
-        f"__Entity__{user_id}",  # Node projection
-        "*",  # Relationship projection
-        nodeProperties=["embedding"]  # Configuration parameters
-    )
-    # 2.algorithm: k-nearest neighbors
-    gds.knn.mutate(
-        G,
-        nodeProperties=['embedding'],
-        mutateRelationshipType='SIMILAR',
-        mutateProperty='score',
-        similarityCutoff=env.GDS_SIMILARITY_THRESHOLD,
-    )
-    # 3.store graph with weak connected components
-    gds.wcc.write(
-        G,
-        writeProperty="wcc",
-        relationshipTypes=["SIMILAR"]
-    )
-    # 4. KEY:社区检测与聚类分析
-    word_edit_distance = 3
-    potential_duplicate_candidates = cypherQuery.detect(user_id,word_edit_distance)
-    extraction_llm = openai.with_structured_output(Disambiguate)
-    extraction_prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                SystemPrompts.IDENTIFY_SYSTEM_PROMPT,
-            ),
-            (
-                "human",
-                UserPrompts.IDENTIFY_USER_PROMPT,   # noqa: E501,
-            ),
-        ]
-    )
-    
-    extraction_chain = extraction_prompt | extraction_llm
-    
-    merged_entities = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        # Submitting all tasks and creating a list of future objects
-        futures = [executor.submit(entity_resolution, el['combinedResult'],extraction_chain) for el in potential_duplicate_candidates]
+            for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
+                try:
+                    to_merge = future.result()
+                    if to_merge:
+                        merged_entities.extend(to_merge)
+                except Exception as e:
+                    self.logger.error("模型没法进行这条任务的实体解析")
+        
+        self.logger.info(countNodesMerged(self.uuid,merged_entities,self.graph))
+        
+        G.drop()
+        
+        self.cypherQuery.drop_communities()
+        
+        # 1.project into memory
+        G, _ = self.gds.graph.project(
+            f"communities",  # Graph name   # FIXME: 注册gds.graph时也要加上uuid,不然可能导致多进程误删除
+            f"__Entity__{self.uuid}",  # Node projection
+            {
+                "_ALL_": {
+                    "type": "*",
+                    "orientation": "UNDIRECTED",
+                    "properties": {"weight": {"property": "*", "aggregation": "COUNT"}},
+                }
+            },
+        )
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
-            try:
-                to_merge = future.result()
-                if to_merge:
-                    merged_entities.extend(to_merge)
-            except Exception as e:
-                print("模型没法进行这条任务的实体解析")
-    
-    # countNodesMerged(user_id,merged_entities,graph)
-    
-    G.drop()
-    
-    cypherQuery.drop_communities()
-    
-    # 1.project into memory
-    G, result = gds.graph.project(
-        f"communities",  # Graph name
-        f"__Entity__{user_id}",  # Node projection
-        {
-            "_ALL_": {
-                "type": "*",
-                "orientation": "UNDIRECTED",
-                "properties": {"weight": {"property": "*", "aggregation": "COUNT"}},
-            }
-        },
-    )
-    
-    # 查看图连通性
-    # wcc = gds.wcc.stats(G)
-    # print(f"Component count: {wcc['componentCount']}")
-    # print(f"Component distribution: {wcc['componentDistribution']}")
-    
-    # 2. LeiDen聚类
-    gds.leiden.write(
-        G,
-        writeProperty=f"communities",
-        includeIntermediateCommunities=True,
-        relationshipWeightProperty="weight",
-    )
-    
-    # 添加约束
-    cypherQuery.add_constraints_for_community(user_id)
-    
-    # 构造层次聚类
-    merged_nodes = cypherQuery.constructing_hierarchical_clustering(user_id)
-    print(f"{merged_nodes[0]['count(*)']} nodes merged")
-    
-    # 设置社区rank
-    cypherQuery.set_community_rank(user_id)
-    
-    # 设置结点与边的额外信息---用于后续的查询
-    # 我们需要给所有实体结点设置度数；给边设置`source_degree`, `target_degree`, `rank`属性
-    # 此外需要给每个实体设置其包含的text_unit_ids
-    # 还需要给relationship设置source和target的属性，表示其链接到的结点的内容
-    # 增加：需要给每个结点设置communities属性，是一个列表id，表示结点所在的社区
-    # 1. node degree
-    cypherQuery.set_node_degree(user_id)
-    # 2. relationship degree
-    cypherQuery.set_relationship_degree(user_id)
-    # 3. text_unit_ids
-    cypherQuery.set_text_unit_ids(user_id)
-    # 4. relationship设置source和target的属性
-    cypherQuery.set_relationship_source_and_target(user_id)
-    # 5. 设置communities属性
-    cypherQuery.set_communities(user_id)
-    
-    # 准备工作结束，开始summarization
-    
-    community_info = cypherQuery.get_community_info(user_id)
+        # 2. LeiDen聚类
+        self.gds.leiden.write(
+            G,
+            writeProperty=f"communities",
+            includeIntermediateCommunities=True,
+            relationshipWeightProperty="weight",
+        )
+        
+        # 添加约束
+        self.cypherQuery.add_constraints_for_community(self.uuid)
+        
+        # 构造层次聚类
+        merged_nodes = self.cypherQuery.constructing_hierarchical_clustering(self.uuid)
+        self.logger.info(f"{merged_nodes[0]['count(*)']} nodes merged")
+        
+        # 设置社区rank
+        self.cypherQuery.set_community_rank(self.uuid)
+        
+        # 设置结点与边的额外信息---用于后续的查询
+        # 我们需要给所有实体结点设置度数；给边设置`source_degree`, `target_degree`, `rank`属性
+        # 此外需要给每个实体设置其包含的text_unit_ids
+        # 还需要给relationship设置source和target的属性，表示其链接到的结点的内容
+        # 增加：需要给每个结点设置communities属性，是一个列表id，表示结点所在的社区
+        # 1. node degree
+        self.cypherQuery.set_node_degree(self.uuid)
+        # 2. relationship degree
+        self.cypherQuery.set_relationship_degree(self.uuid)
+        # 3. text_unit_ids
+        self.cypherQuery.set_text_unit_ids(self.uuid)
+        # 4. relationship设置source和target的属性
+        self.cypherQuery.set_relationship_source_and_target(self.uuid)
+        # 5. 设置communities属性
+        self.cypherQuery.set_communities(self.uuid)
+        
+        # 准备工作结束，开始summarization
+        
+        community_info = self.cypherQuery.get_community_info(self.uuid)
 
-    community_template = """Based on the provided nodes and relationships that belong to the same graph community,
-    generate a natural language summary of the provided information:
-    {community_info}
-
-    Summary:"""  # noqa: E501
-
-    community_prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "Given an input triples, generate the information summary. No pre-amble.",
-            ),
-            ("human", community_template),
-        ]
-    )
-    
-    community_chain = community_prompt | openai | StrOutputParser()
-    summaries = []
-    
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(process_communities, community, community_chain) for community in community_info}
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
-            summary = future.result()
-            summaries.append(summary)
-    
-    
-    title_template = """Given the following summary, provide a title that best represents the content:
-    {summary}
-    
-    Title:"""
-    title_prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "Given a summary, generate a title that best represents the content. No pre-amble.",
-            ),
-            ("human", title_template),
-        ]
-    )
-    
-    title_chain = title_prompt | openai | StrOutputParser()
-    titles = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(process_summaries, summary, title_chain) for summary in summaries}
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing Title"):
-            title = future.result()
-            titles.append(title)
-    
-    assert len(summaries) == len(titles)
-    info = [{**summary, 'title': title} for summary, title in zip(summaries, titles)]
-    
-    # Store info
-    cypherQuery.store_info(user_id,info)
-    
-    G.drop()
+        
+        community_chain = community_prompt | self.chat_model | StrOutputParser()    # TODO：增加报错处理
+        summaries = []
+        
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            futures = {executor.submit(process_communities, community, community_chain) for community in community_info}
+            for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
+                summary = future.result()
+                summaries.append(summary)
+        
+        
+        title_chain = title_prompt | self.chat_model | StrOutputParser()
+        titles = []
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            futures = {executor.submit(process_summaries, summary, title_chain) for summary in summaries}
+            for future in tqdm(as_completed(futures), total=len(futures), desc="Processing Title"):
+                title = future.result()
+                titles.append(title)
+        
+        assert len(summaries) == len(titles)
+        info = [{**summary, 'title': title} for summary, title in zip(summaries, titles)]
+        
+        # Store info
+        self.cypherQuery.store_info(info,uuid=self.uuid)
+        
+        G.drop()

@@ -23,7 +23,7 @@ class GraphDataFrame:
 
 @dataclass
 class CypherQuery:
-    USER_ID: str
+    uuid: str
     entities_query: str = field(init=False)
     relationships_query: str = field(init=False)
     text_units_query: str = field(init=False)
@@ -33,29 +33,30 @@ class CypherQuery:
     
         self.entities_query:str = field(default=f"""
             MATCH (n) 
-            WHERE ANY(label IN labels(n) WHERE label ENDS WITH '_{self.USER_ID}')
+            WHERE ANY(label IN labels(n) WHERE label ENDS WITH '{self.uuid}')
             RETURN n.id as id,n.description as description,n.degree as degree,n.text_unit_ids as text_unit_ids,n.communities as communities
         """)
         self.relationships_query:str = field(default=f"""
-            MATCH (s:`__Entity__{self.USER_ID}`)-[r]->(t:`__Entity__{self.USER_ID}`)
+            MATCH (s:`__Entity__{self.uuid}`)-[r]->(t:`__Entity__{self.uuid}`)
             RETURN id(r) as id,s.id as source_id,t.id as target_id,r.rank as rank,r.source as source,r.target as target
         """)
         self.text_units_query:str = field(default=f"""
-            MATCH (n:`Document__{self.USER_ID}`)-[r]->(m:`__Entity__{self.USER_ID}`)
+            MATCH (n:`Document{self.uuid}`)-[r]->(m:`__Entity__{self.uuid}`)
             RETURN n.id AS id, COLLECT(ID(r)) AS relationship_ids, n.text AS text_unit;
         """)
         self.communities_reports_query:str = field(default=f"""
-            MATCH (n:`__Community__{self.USER_ID}`)
+            MATCH (n:`__Community__{self.uuid}`)
             RETURN ID(n) AS id, n.level AS level, n.community_rank AS rating, n.id AS community_id,n.title as title,n.summary as content;
         """)
 
-def getInfoFromNeo4j(graph:Neo4jGraph,USER_ID:str)->GraphDataFrame:
-    query = CypherQuery(USER_ID)    
+def getInfoFromNeo4j(graph:Neo4jGraph,uuid:str)->GraphDataFrame:
+    query = CypherQuery(uuid)    
     entites_res = graph.query(query.entities_query.default)
     relationships_res = graph.query(query.relationships_query.default)
     text_units_res = graph.query(query.text_units_query.default)
     communities_reports_res = graph.query(query.communities_reports_query.default)
     # 都不为[]
+    # FIXME:如果存在错误需要检查原因
     assert entites_res != [],"实体记录不存在"
     assert relationships_res != [],"关系记录不存在"
     assert text_units_res != [],"文本单元记录不存在"
@@ -120,7 +121,7 @@ class ContextSelector:
         # 获取所有文本单元并转化成df
         # 获取所有社区报告并转化成df
         graphDF = getInfoFromNeo4j(graph,self._USER_ID)
-        
+
         # Step 1
         # Select the entities to be used in the local search
         selected_entities = self._entities_selector.run(query, graphDF.entities)
