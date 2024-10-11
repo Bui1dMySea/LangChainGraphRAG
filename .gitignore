@@ -1,3 +1,6 @@
 __pycache__
 .pytest_*
 /src/**/test*
+/node_modules
+/package-lock.json
+/package.json

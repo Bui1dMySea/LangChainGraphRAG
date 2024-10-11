@@ -5,7 +5,7 @@
 ### 🏠 [主页](https://github.com/Bui1dMySea/LangChainGraphRAG)
 
 ## 📌 前言：为什么想做这样一个项目？
-主要原因是实习的时候mentor喊我搞GraphRAG，但是微软官方开源的库实在是一言难尽。里面夹杂各种私货就算了，代码耦合度也非常高。
+主要原因是微软官方开源的库实在是一言难尽。里面夹杂各种私货就算了，代码耦合度也非常高。
 因此，参考了各种各样的几十篇博客以及各种具体代码实现后，决定采用LangChain+Neo4j+GraphRAG的实现。
 目前，主要参考了如下几个开源的工作。
 
@@ -50,7 +50,7 @@ sudo apt-get install neo4j=1:5.21.0
 4. 修改配置文件权限+修改配置文件
 
 ```Bash
-chmod +x /etc/neo4j/neo4j.conf # Debian路径；其余的可以访问neo4j官网查看默认路径
+chmod +x /etc/neo4j/neo4j.conf # 这里是Debian路径；其余的可以访问neo4j官网查看默认路径
 vim /etc/neo4j/neo4j.conf
 
 # 找到或者直接修改取消注释掉这两行
@@ -64,7 +64,7 @@ dbms.security.procedures.allowlist=apoc.coll.*,apoc.load.*,gds.*,apoc.*
 
    b.  `neo4j-graph-data-science-{你的版本}.jar` https://github.com/neo4j/graph-data-science/releases/ # https://neo4j.com/docs/graph-data-science/current/installation/supported-neo4j-versions/ 这里是neo4j版本与datascience的具体对照表
 
-6. 将刚刚下好的两个文件复制到*/var/lib/neo4j/plugins路径下*  # Debian路径;其余系统的路径访问neo4j官网查看
+6. 将刚刚下好的两个文件复制到*/var/lib/neo4j/plugins*路径下 # Debian路径;其余系统的路径访问neo4j官网查看
 
 7. 启动neo4j: `sudo neo4j start`
 
@@ -82,7 +82,7 @@ dbms.security.procedures.allowlist=apoc.coll.*,apoc.load.*,gds.*,apoc.*
 python search.py \
 --neo4j_uri bolt://localhost:7687 \
 --neo4j_username your_username \
---neo4j_password  your_password\
+--neo4j_password  your_password \
 --model_provider openai \
 --embedding_model_name_or_path BAAI/bge-m3 \
 --chat_model_name deepseek-chat \
@@ -91,9 +91,15 @@ python search.py \
 --query_mode [local,global]
 ```
 
-## 作者
+#  效果
 
-👦🏻 **Weijie Liu**
+![image-20241009101531510](/Users/weijieliu/Library/Application Support/typora-user-images/image-20241009101531510.png)
+
+
+
+## 👦🏻 作者
+
+ **Weijie Liu**
 
 * 主页: https://github.com/Bui1dMySea
 * Github: [@Bui1dMySea](https://github.com/Bui1dMySea)
