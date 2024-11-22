@@ -91,11 +91,6 @@ python search.py \
 --query_mode [local,global]
 ```
 
-#  效果
-
-![image-20241009101531510](/Users/weijieliu/Library/Application Support/typora-user-images/image-20241009101531510.png)
-
-
 
 ## 👦🏻 作者
 
