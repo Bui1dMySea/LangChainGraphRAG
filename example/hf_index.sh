@@ -1,0 +1,11 @@
+python build_index.py \
+--file_path ./txt \
+--neo4j_uri bolt://localhost:7687 \
+--neo4j_username neo4j \
+--neo4j_password  langchaingraphrag \
+--model_provider hf \
+--embedding_model_name_or_path BAAI/bge-m3 \
+--repo_id NousResearch/Meta-Llama-3.1-8B-Instruct \
+--max_workers 16 \
+--flash_attn \
+--device cuda

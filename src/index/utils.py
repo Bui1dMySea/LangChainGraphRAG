@@ -1,6 +1,7 @@
 from typing import List, Optional
 from langchain_community.graphs import Neo4jGraph
-from langchain_core.prompts import ChatPromptTemplate
+from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain.schema.messages import SystemMessage
 from langchain_community.graphs.graph_document import GraphDocument
 from langchain_core.documents import Document
 
@@ -154,22 +155,12 @@ def prepare_string(data):
 
     return nodes_str + "\n" + rels_str
 
-def create_prompt(MODEL_NAME):
-    system_prompt = SystemPrompts.GRAPHSYSTEMPROMPT.format(
-        model_name=MODEL_NAME)
-    default_prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                system_prompt,
-            ),
-            (
-                "human",
-                UserPrompts.GRAPH_USER_PROMPT,
-            ),
-        ]
-    )
-    return default_prompt
+def create_prompt(model_name):
+    system_prompt = SystemPrompts.GRAPHSYSTEMPROMPT.format(model_name=model_name)
+    system_message = SystemMessage(content=system_prompt)
+    human_message = HumanMessagePromptTemplate.from_template(UserPrompts.GRAPH_USER_PROMPT)
+    chat_prompt = ChatPromptTemplate.from_messages([system_message, human_message])
+    return chat_prompt
 
 
 async def aprocess_summaries(summaries, title_chain):
@@ -196,7 +187,6 @@ def process_communities(community, community_chain):
     stringify_info = prepare_string(community)
     summary = community_chain.invoke({'community_info': stringify_info})
     return {"community": community['communityId'], "summary": summary}
-
 
 
 def process_text(text: str, model) -> List[GraphDocument]:

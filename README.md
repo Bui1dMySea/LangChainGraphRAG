@@ -66,7 +66,7 @@ dbms.security.procedures.allowlist=apoc.coll.*,apoc.load.*,gds.*,apoc.*
 
 6. 将刚刚下好的两个文件复制到*/var/lib/neo4j/plugins*路径下 # Debian路径;其余系统的路径访问neo4j官网查看
 
-7. 启动neo4j: `sudo neo4j start`
+7. 启动neo4j: `sudo neo4j start` ｜ 注意！！如果已经在步骤 6 之前已经启动了neo4j，需要重启来应用配置文件 `sudo neo4j restart`
 
 ### 配置api-key
 
@@ -91,6 +91,8 @@ python search.py \
 --query_mode [local,global]
 ```
 
+### 更多方案(ollama,huggingface)
+请参考[更多Examples](./example/)
 
 ## 👦🏻 作者
 

@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # langchain
 from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI,OpenAI
 from langchain_community.vectorstores import Neo4jVector
 from langchain_community.graphs import Neo4jGraph
 from langchain_core.prompts import ChatPromptTemplate
@@ -14,7 +14,10 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_text_splitters.base import TextSplitter
 from langchain_core.embeddings.embeddings import Embeddings
-
+from langchain_core.documents import Document
+# Graph
+import json_repair
+from langchain_community.graphs.graph_document import GraphDocument, Node, Relationship
 # utils
 from .utils import num_tokens_from_string,create_prompt,process_text,entity_resolution,process_communities,process_summaries,countNodesMerged
 from ..utils.logger import create_rotating_logger
@@ -74,15 +77,11 @@ class ApiIndex(object):
         gds_similarity_threshold:float=0.95,
         word_edit_distance:int = 3,
         uuid:str="",
+        model_name="gpt-4o-mini"
     ):
         self.graph = graph
         self.chat_model = chat_model
-        self.llm_transformer = LLMGraphTransformer(
-            llm=chat_model,
-            node_properties=["description"],
-            relationship_properties=["description"],
-            prompt=create_prompt(chat_model.model_name),  
-        )
+        self.model_name = model_name        
         self.embedding = embedding
         self.splitter = splitter
         self.gds = gds
@@ -98,7 +97,7 @@ class ApiIndex(object):
         self.uuid = uuid
         
     def _preprocess(self,documents:List[Dict[str,str]]):
-        self.logger("Chunking documents")
+        self.logger.info("Chunking documents")
         data = []
         for document in documents:
             title,text = document['title'],document['text']
@@ -107,18 +106,71 @@ class ApiIndex(object):
                 data.append({"title": title, "text": chunk})
 
         return pd.DataFrame(data)
-        
-    def create_index(self,documents:List[str]):
-        data = self._preprocess(documents)
-        graph_documents = []
     
-        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-            # Submitting all tasks and creating a list of future objects
-            futures = [executor.submit(process_text, f"{row['title']} {row['text']}", self.llm_transformer) for i, row in data.iterrows()]
-            for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
-                graph_document = future.result()
-                graph_documents.extend(graph_document)
+    def _parse_hf_ollama(self,content:str,source:Document):
+        try:
+            breakpoint()
+            parsed_json = json_repair.loads(content)
+            relationships = []
+            nodes_set = set()
+            for rel in parsed_json:
+                # Nodes need to be deduplicated using a set
+                if "head_description" in rel.keys():
+                    nodes_set.add((rel["head"], rel["head_type"], rel["head_description"]))
+                else:
+                    nodes_set.add((rel["head"], rel["head_type"]))
+                if "tail_description" in rel.keys():
+                    nodes_set.add((rel["tail"], rel["tail_type"], rel["tail_description"]))
+                else:
+                    nodes_set.add((rel["tail"], rel["tail_type"]))
+                source_node = Node(id=rel["head"], type=rel["head_type"])
+                target_node = Node(id=rel["tail"], type=rel["tail_type"])
+                relationships.append(
+                    Relationship(
+                        source=source_node, target=target_node, type=rel["relation"]
+                    )
+                )
+            nodes = []
+            for el in list(nodes_set):
+                if len(el) == 3:
+                    node = Node(id=el[0], type=el[1], properties={"description": el[2]})
+                else:
+                    node = Node(id=el[0], type=el[1])
+                nodes.append(node)
+            
+            return GraphDocument(nodes=nodes, relationships=relationships,source=source)
+        except:
+            self.logger.error(f"不是一个合法的Json")
+            return None
+    
+    async def _create_nodes_and_relationships(self,documents:List[str]):
+        data = self._preprocess(documents)
+        documents = [Document(page_content=f"{row['title']} {row['text']}") for i, row in data.iterrows()]
         
+        # 如果是openai模型，直接调用convert_to_graph_documents
+        if isinstance(self.chat_model,ChatOpenAI):
+            llm_transformer = LLMGraphTransformer(
+                llm=self.chat_model,
+                node_properties=["description"],
+                relationship_properties=["description"],
+                prompt=create_prompt(self.chat_model.name),
+            )
+            graph_documents = await llm_transformer.aconvert_to_graph_documents(documents)
+        else:
+            chat_prompt = create_prompt(self.chat_model.name)
+            processed_documents = []
+            for document in documents:
+                prompt = chat_prompt.format_messages(input=document.page_content)
+                processed_documents.append(self.chat_model.invoke(prompt))
+            graph_documents = [self._parse_hf_ollama(document.content,source) for (document,source) in zip(processed_documents,documents)]
+            graph_documents = [graph_document for graph_document in graph_documents if graph_document]
+        
+        return graph_documents
+        
+    async def create_index(self,documents:List[str]):
+        self.logger.info("Create_nodes_and_relationships")
+        graph_documents = await self._create_nodes_and_relationships(documents)
+
         for graph_document in graph_documents:
             for node in graph_document.nodes:
                 node.type = node.type + f"{self.uuid}"
@@ -127,14 +179,13 @@ class ApiIndex(object):
             relationship.type = relationship.type + f"{self.uuid}"
             relationship.source.type += f"{self.uuid}"
             relationship.target.type += f"{self.uuid}"
-            
+
         # 将结点和关系存入图数据库
         self.graph.add_graph_documents(
             graph_documents,
             baseEntityLabel=True,
             include_source=True
         )
-        
         # 查询所有标签是__Entity__的结点，并修改成__Entity__+用户id
         self.cypherQuery.set_entity(self.uuid)
         # 查询所有标签是Document的结点，并修改成Document+用户id
@@ -149,8 +200,10 @@ class ApiIndex(object):
             embedding_node_property='embedding',
             graph=self.graph,
         )
-        
-        self.cypherQuery.drop_entites()
+        try:
+            self.cypherQuery.drop_entites()
+        except:
+            pass
         
         # 1.create the k-nearest neighbor graph
         G, _ = self.gds.graph.project(
@@ -189,14 +242,10 @@ class ApiIndex(object):
                 ),
             ]
         )
-        
         extraction_chain = extraction_prompt | extraction_llm
-    
         merged_entities = []
         with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-            # Submitting all tasks and creating a list of future objects
             futures = [executor.submit(entity_resolution, el['combinedResult'],extraction_chain) for el in potential_duplicate_candidates]
-
             for future in tqdm(as_completed(futures), total=len(futures), desc="Processing documents"):
                 try:
                     to_merge = future.result()
@@ -204,7 +253,6 @@ class ApiIndex(object):
                         merged_entities.extend(to_merge)
                 except Exception as e:
                     self.logger.error("模型没法进行这条任务的实体解析")
-        
         self.logger.info(countNodesMerged(self.uuid,merged_entities,self.graph))
         
         G.drop()

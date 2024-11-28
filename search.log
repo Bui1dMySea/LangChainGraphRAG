@@ -1,0 +1,72 @@
+2024-11-28 21:24:43,383 - search - INFO - args: Namespace(neo4j_uri='bolt://localhost:7687', neo4j_username='neo4j', neo4j_password='langchaingraphrag', model_provider='openai', chat_model_name='gpt-4o-mini', base_url='https://api.gpt.ge/v1/', embedding_model_name_or_path='BAAI/bge-m3', uuid='', top_k=15, level=1, max_tokens=8000, log_file='search.log', log_level='info', max_workers=4, device='cpu', completion_mode='completion', query_mode='global')
+2024-11-28 21:24:43,383 - search - INFO - Connecting to Neo4j
+2024-11-28 21:24:49,946 - search - INFO - Initializing chat model
+2024-11-28 21:24:50,011 - search - INFO - Initializing embedding
+2024-11-28 21:24:58,608 - search - INFO - 查询模式：global
+2024-11-28 21:27:02,693 - search - INFO - args: Namespace(neo4j_uri='bolt://localhost:7687', neo4j_username='neo4j', neo4j_password='langchaingraphrag', model_provider='openai', chat_model_name='gpt-4o-mini', base_url='https://api.gpt.ge/v1/', embedding_model_name_or_path='BAAI/bge-m3', uuid='', top_k=15, level=1, max_tokens=8000, log_file='search.log', log_level='info', max_workers=4, device='cpu', completion_mode='completion', query_mode='global')
+2024-11-28 21:27:02,694 - search - INFO - Connecting to Neo4j
+2024-11-28 21:27:07,314 - search - INFO - Initializing chat model
+2024-11-28 21:27:07,400 - search - INFO - Initializing embedding
+2024-11-28 21:27:20,905 - search - INFO - 查询模式：global
+2024-11-28 21:27:26,558 - search - INFO - Starting query now!
+2024-11-28 21:28:52,789 - search - INFO - 查询结果:
+## 主要故事线概述
+
+这本书的主要故事线围绕着人类与三体文明之间的沟通和合作展开。书中强调了文化交流的重要性以及针对潜在威胁的防御举措，这些内容得到了多个数据记录的支持 [Data: Reports (1, 2, 6, 3, 4, +more)]。
+
+## 理性与情感的对比
+
+书中还探讨了三体文明的理性与地球情感特性的对比，突显了三体文明在技术上的先进性和地球丰富的文化遗产。这种对比不仅加深了对两种文明的理解，也为后续的互动奠定了基础 [Data: Reports (1, 3, 5, 7, 6, +more)]。
+
+## 互助需求与外部威胁
+
+书中描述了三体文明与地球之间的互动，双方在面对外部威胁（如被称为“掠夺者”的外星物种）时，存在着相互需要的援助关系。这一背景为两种文明的合作提供了强有力的动机 [Data: Reports (1, 3, 4)]。
+
+## 环境影响
+
+此外，书中还描绘了三体星球的恶劣环境条件，这些条件显著影响了其居民的生存状况。通过这些描写，读者可以更好地理解三体文明所面临的挑战与局限 [Data: Reports (1, 5, 7)]。
+
+## 结论
+
+综上所述，这本书通过多元化的视角，深入探讨了人类与三体文明之间的互动，强调了文化交流、技术对比、互助关系及环境影响等关键主题。这些元素共同构成了故事的核心，提示我们在面对未知的外部威胁时，合作与理解是至关重要的。
+2024-11-28 21:28:52,793 - search - INFO - 查询结束
+2024-11-28 21:30:49,177 - search - INFO - args: Namespace(neo4j_uri='bolt://localhost:7687', neo4j_username='neo4j', neo4j_password='langchaingraphrag', model_provider='ollama', chat_model_name='llama3.1', base_url=None, embedding_model_name_or_path='BAAI/bge-m3', uuid='', top_k=15, level=1, max_tokens=8000, log_file='search.log', log_level='info', max_workers=16, device='cuda', completion_mode='completion', query_mode='global')
+2024-11-28 21:30:49,178 - search - INFO - Connecting to Neo4j
+2024-11-28 21:30:49,356 - search - INFO - Initializing chat model
+2024-11-28 21:30:49,408 - search - INFO - Initializing embedding
+2024-11-28 21:30:57,125 - search - INFO - 查询模式：global
+2024-11-28 21:30:57,301 - search - INFO - Starting query now!
+2024-11-28 21:31:16,178 - search - INFO - 查询结果:
+**主要故事线**
+
+根据分析师的报告，以下是这本书的主要故事线：
+
+* **对比性主题**: 这本书探讨了地球的情感性质与三大文明的理性之间的对比 [Data: Reports (1, 3, 6)]。
+* **文化和技术差异**: 书中强调了地球与三大文明之间的文化和技术差异 [Data: Reports (4, 5, 7)]。
+* **合作与理解**: 故事触及了人类与三大文明之间的合作与理解主题 [Data: Reports (1, 2)]。
+
+这些故事线似乎是书中主要的探讨方向。
+2024-11-28 21:31:16,179 - search - INFO - 查询结束
+2024-11-28 21:34:16,439 - search - INFO - args: Namespace(neo4j_uri='bolt://localhost:7687', neo4j_username='neo4j', neo4j_password='langchaingraphrag', model_provider='ollama', chat_model_name='llama3.1', repo_id='NousResearch/Meta-Llama-3.1-8B-Instruct', base_url=None, embedding_model_name_or_path='BAAI/bge-m3', uuid='', top_k=15, level=1, max_tokens=8000, log_file='search.log', log_level='info', max_workers=16, device='cuda', completion_mode='completion', query_mode='global')
+2024-11-28 21:34:16,441 - search - INFO - Connecting to Neo4j
+2024-11-28 21:34:16,621 - search - INFO - Initializing chat model
+2024-11-28 21:34:16,696 - search - INFO - Initializing embedding
+2024-11-28 21:34:23,741 - search - INFO - 查询模式：global
+2024-11-28 21:34:23,932 - search - INFO - Starting query now!
+2024-11-28 21:34:43,331 - search - INFO - 查询结果:
+**主要故事线**
+
+根据分析师的报告，书中主要探讨的是地球的情感性质与三大文明的理性之间的对比 [Data: Reports (1, 3, 6)]。这本书强调了人类和三大文明之间文化和技术差异的重要性 [Data: Reports (4, 5)]。
+
+**情感与理性的对比**
+
+书中突出了地球的情感性质与三大文明的理性之间的对比 [Data: Reports (1, 3, 6)]。这本书也讨论了人类和三大文明之间的情感交流和理性思考在宇宙复杂性的背景下的重要性 [Data: Reports (1)]。
+
+**挑战与合作**
+
+书中提到了三大文明面临的挑战，如来自掠夺者的威胁 [Data: Reports (3)]。这本书也探讨了人类和三大文明之间的合作与理解的重要性 [Data: Reports (1, 2)]。
+
+**总体结论**
+
+综上所述，这本书主要探讨的是地球的情感性质与三大文明的理性之间的对比，以及人类和三大文明之间的文化、技术差异和挑战。
+2024-11-28 21:34:43,331 - search - INFO - 查询结束

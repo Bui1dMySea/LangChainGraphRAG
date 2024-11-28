@@ -1,0 +1,958 @@
+2024-11-25 21:36:12,336 - build_index - INFO - Start building index
+2024-11-25 21:36:12,342 - build_index - INFO - Connecting to Neo4j
+2024-11-25 21:42:31,210 - build_index - INFO - Start building index
+2024-11-25 21:42:31,216 - build_index - INFO - Connecting to Neo4j
+2024-11-25 21:43:43,507 - build_index - INFO - Start building index
+2024-11-25 21:43:43,513 - build_index - INFO - Connecting to Neo4j
+2024-11-25 21:43:43,530 - build_index - ERROR - Failed to connect to Neo4jURI: bolt://localhost:7687, Username: neo4j, Password: langchaingraphrag
+2024-11-25 21:44:33,680 - build_index - INFO - Start building index
+2024-11-25 21:44:33,686 - build_index - INFO - Connecting to Neo4j
+2024-11-25 21:44:33,702 - build_index - ERROR - Meet error Could not use APOC procedures. Please ensure the APOC plugin is installed in Neo4j and that 'apoc.meta.data()' is allowed in Neo4j configuration  when connecting to Neo4j 
+Failed to connect to Neo4jURI: bolt://localhost:7687, Username: neo4j, Password: langchaingraphrag
+2024-11-25 21:45:45,003 - build_index - INFO - Start building index
+2024-11-25 21:45:45,008 - build_index - INFO - Connecting to Neo4j
+2024-11-25 21:45:45,024 - build_index - ERROR - Meet error Could not use APOC procedures. Please ensure the APOC plugin is installed in Neo4j and that 'apoc.meta.data()' is allowed in Neo4j configuration  when connecting to Neo4j 
+Failed to connect to Neo4jURI: bolt://localhost:7687, Username: neo4j, Password: langchaingraphrag
+2024-11-26 10:17:25,487 - build_index - INFO - Start building index
+2024-11-26 10:17:25,494 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:17:52,886 - build_index - ERROR - Failed to get OpenAI API key
+2024-11-26 10:18:51,127 - build_index - INFO - Start building index
+2024-11-26 10:18:51,132 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:18:56,390 - build_index - INFO - Initializing chat model
+2024-11-26 10:18:56,447 - build_index - INFO - Initializing embedding
+2024-11-26 10:22:15,703 - build_index - INFO - Start building index
+2024-11-26 10:22:15,709 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:22:34,162 - build_index - INFO - Initializing chat model
+2024-11-26 10:22:34,224 - build_index - INFO - Initializing embedding
+2024-11-26 10:25:28,630 - build_index - INFO - Initializing splitter
+2024-11-26 10:25:28,633 - build_index - INFO - Initializing GDS
+2024-11-26 10:25:28,727 - build_index - INFO - Initializing index
+2024-11-26 10:25:28,741 - build_index - INFO - Building index now!
+2024-11-26 10:30:37,380 - build_index - INFO - Start building index
+2024-11-26 10:30:37,387 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:36:32,881 - build_index - INFO - Initializing chat model
+2024-11-26 10:36:32,980 - build_index - INFO - Initializing embedding
+2024-11-26 10:36:39,310 - build_index - INFO - Initializing splitter
+2024-11-26 10:36:39,311 - build_index - INFO - Initializing GDS
+2024-11-26 10:36:39,337 - build_index - INFO - Initializing index
+2024-11-26 10:36:39,349 - build_index - INFO - Building index now!
+2024-11-26 10:38:56,895 - build_index - INFO - Start building index
+2024-11-26 10:38:56,899 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:44:37,513 - build_index - INFO - Initializing chat model
+2024-11-26 10:44:37,595 - build_index - INFO - Initializing embedding
+2024-11-26 10:44:43,994 - build_index - INFO - Initializing splitter
+2024-11-26 10:44:43,994 - build_index - INFO - Initializing GDS
+2024-11-26 10:44:44,025 - build_index - INFO - Initializing index
+2024-11-26 10:44:44,036 - build_index - INFO - Building index now!
+2024-11-26 10:46:05,949 - build_index - INFO - Chunking documents
+2024-11-26 10:46:14,868 - build_index - INFO - Start building index
+2024-11-26 10:46:14,873 - build_index - INFO - Connecting to Neo4j
+2024-11-26 10:46:29,714 - build_index - INFO - Initializing chat model
+2024-11-26 10:46:29,771 - build_index - INFO - Initializing embedding
+2024-11-26 10:46:36,397 - build_index - INFO - Initializing splitter
+2024-11-26 10:46:36,398 - build_index - INFO - Initializing GDS
+2024-11-26 10:46:36,437 - build_index - INFO - Initializing index
+2024-11-26 10:46:36,451 - build_index - INFO - Building index now!
+2024-11-26 10:46:40,097 - build_index - INFO - Chunking documents
+2024-11-26 16:32:30,675 - build_index - INFO - Start building index
+2024-11-26 16:32:30,680 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:35:18,556 - build_index - ERROR - Failed to get OpenAI API key
+2024-11-26 16:35:34,137 - build_index - INFO - Start building index
+2024-11-26 16:35:34,141 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:36:07,814 - build_index - INFO - Initializing chat model
+2024-11-26 16:36:07,879 - build_index - INFO - Initializing embedding
+2024-11-26 16:36:15,558 - build_index - INFO - Initializing splitter
+2024-11-26 16:36:15,558 - build_index - INFO - Initializing GDS
+2024-11-26 16:36:15,578 - build_index - INFO - Initializing index
+2024-11-26 16:36:15,588 - build_index - INFO - Building index now!
+2024-11-26 16:36:15,589 - build_index - INFO - Chunking documents
+2024-11-26 16:39:40,385 - build_index - INFO - Start building index
+2024-11-26 16:39:40,391 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:39:48,032 - build_index - INFO - Initializing chat model
+2024-11-26 16:39:48,090 - build_index - INFO - Initializing embedding
+2024-11-26 16:39:55,944 - build_index - INFO - Initializing splitter
+2024-11-26 16:39:55,944 - build_index - INFO - Initializing GDS
+2024-11-26 16:39:55,967 - build_index - INFO - Initializing index
+2024-11-26 16:39:55,978 - build_index - INFO - Building index now!
+2024-11-26 16:39:55,978 - build_index - INFO - Chunking documents
+2024-11-26 16:46:11,163 - build_index - INFO - Start building index
+2024-11-26 16:46:11,167 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:46:35,611 - build_index - INFO - Initializing chat model
+2024-11-26 16:46:35,698 - build_index - INFO - Initializing embedding
+2024-11-26 16:46:43,186 - build_index - INFO - Initializing splitter
+2024-11-26 16:46:43,187 - build_index - INFO - Initializing GDS
+2024-11-26 16:46:43,211 - build_index - INFO - Initializing index
+2024-11-26 16:46:43,224 - build_index - INFO - Building index now!
+2024-11-26 16:46:43,224 - build_index - INFO - Chunking documents
+2024-11-26 16:47:40,182 - build_index - INFO - Start building index
+2024-11-26 16:47:40,188 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:47:45,687 - build_index - INFO - Initializing chat model
+2024-11-26 16:47:45,742 - build_index - INFO - Initializing embedding
+2024-11-26 16:47:53,678 - build_index - INFO - Initializing splitter
+2024-11-26 16:47:53,678 - build_index - INFO - Initializing GDS
+2024-11-26 16:47:53,699 - build_index - INFO - Initializing index
+2024-11-26 16:47:53,712 - build_index - INFO - Building index now!
+2024-11-26 16:47:53,712 - build_index - INFO - Chunking documents
+2024-11-26 16:48:10,278 - build_index - INFO - None
+2024-11-26 16:48:10,873 - build_index - INFO - 76 nodes merged
+2024-11-26 16:48:18,765 - build_index - INFO - Index built successfully
+2024-11-26 16:48:39,576 - build_index - INFO - Start building index
+2024-11-26 16:48:39,581 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:48:39,852 - build_index - INFO - Initializing chat model
+2024-11-26 16:50:40,671 - build_index - INFO - Start building index
+2024-11-26 16:50:40,678 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:50:40,805 - build_index - INFO - Initializing chat model
+2024-11-26 16:51:21,814 - build_index - INFO - Start building index
+2024-11-26 16:51:21,819 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:51:21,943 - build_index - INFO - Initializing chat model
+2024-11-26 16:59:38,367 - build_index - INFO - Start building index
+2024-11-26 16:59:38,376 - build_index - INFO - Connecting to Neo4j
+2024-11-26 16:59:38,461 - build_index - INFO - Initializing chat model
+2024-11-26 17:00:25,413 - build_index - INFO - Start building index
+2024-11-26 17:00:25,419 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:00:25,506 - build_index - INFO - Initializing chat model
+2024-11-26 17:00:27,891 - build_index - INFO - Initializing embedding
+2024-11-26 17:00:35,649 - build_index - INFO - Initializing splitter
+2024-11-26 17:00:35,650 - build_index - INFO - Initializing GDS
+2024-11-26 17:00:35,696 - build_index - INFO - Initializing index
+2024-11-26 17:09:01,914 - build_index - INFO - Start building index
+2024-11-26 17:09:01,919 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:09:02,000 - build_index - INFO - Initializing chat model
+2024-11-26 17:09:04,283 - build_index - INFO - Initializing embedding
+2024-11-26 17:09:11,614 - build_index - INFO - Initializing splitter
+2024-11-26 17:09:11,614 - build_index - INFO - Initializing GDS
+2024-11-26 17:09:11,632 - build_index - INFO - Initializing index
+2024-11-26 17:09:11,645 - build_index - INFO - Building index now!
+2024-11-26 17:09:11,645 - build_index - INFO - Chunking documents
+2024-11-26 17:29:13,540 - build_index - INFO - Start building index
+2024-11-26 17:29:13,545 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:29:13,634 - build_index - INFO - Initializing chat model
+2024-11-26 17:29:54,826 - build_index - INFO - Start building index
+2024-11-26 17:29:54,832 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:29:54,901 - build_index - INFO - Initializing chat model
+2024-11-26 17:30:00,447 - build_index - INFO - Initializing embedding
+2024-11-26 17:30:07,313 - build_index - INFO - Initializing splitter
+2024-11-26 17:30:07,313 - build_index - INFO - Initializing GDS
+2024-11-26 17:30:07,328 - build_index - INFO - Initializing index
+2024-11-26 17:35:05,456 - build_index - INFO - Start building index
+2024-11-26 17:35:05,462 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:35:05,567 - build_index - INFO - Initializing chat model
+2024-11-26 17:35:18,345 - build_index - INFO - Initializing embedding
+2024-11-26 17:35:25,155 - build_index - INFO - Initializing splitter
+2024-11-26 17:35:25,155 - build_index - INFO - Initializing GDS
+2024-11-26 17:35:25,171 - build_index - INFO - Initializing index
+2024-11-26 17:35:25,182 - build_index - INFO - Building index now!
+2024-11-26 17:35:25,182 - build_index - INFO - Chunking documents
+2024-11-26 17:36:01,287 - build_index - INFO - Start building index
+2024-11-26 17:36:01,293 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:36:01,384 - build_index - INFO - Initializing chat model
+2024-11-26 17:36:09,907 - build_index - INFO - Initializing embedding
+2024-11-26 17:36:16,445 - build_index - INFO - Initializing splitter
+2024-11-26 17:36:16,445 - build_index - INFO - Initializing GDS
+2024-11-26 17:36:16,458 - build_index - INFO - Initializing index
+2024-11-26 17:36:16,468 - build_index - INFO - Building index now!
+2024-11-26 17:36:16,468 - build_index - INFO - Chunking documents
+2024-11-26 17:38:39,049 - build_index - INFO - Start building index
+2024-11-26 17:38:39,055 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:38:39,176 - build_index - INFO - Initializing chat model
+2024-11-26 17:38:47,877 - build_index - INFO - Initializing embedding
+2024-11-26 17:38:53,344 - build_index - INFO - Initializing splitter
+2024-11-26 17:38:53,344 - build_index - INFO - Initializing GDS
+2024-11-26 17:38:53,361 - build_index - INFO - Initializing index
+2024-11-26 17:38:53,368 - build_index - INFO - Building index now!
+2024-11-26 17:38:53,368 - build_index - INFO - Chunking documents
+2024-11-26 17:40:23,615 - build_index - INFO - Start building index
+2024-11-26 17:40:23,620 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:40:23,720 - build_index - INFO - Initializing chat model
+2024-11-26 17:40:37,214 - build_index - INFO - Initializing embedding
+2024-11-26 17:40:42,511 - build_index - INFO - Initializing splitter
+2024-11-26 17:40:42,511 - build_index - INFO - Initializing GDS
+2024-11-26 17:40:42,531 - build_index - INFO - Initializing index
+2024-11-26 17:40:42,550 - build_index - INFO - Building index now!
+2024-11-26 17:40:42,550 - build_index - INFO - Chunking documents
+2024-11-26 17:46:53,003 - build_index - INFO - Start building index
+2024-11-26 17:46:53,007 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:46:53,095 - build_index - INFO - Initializing chat model
+2024-11-26 17:50:24,139 - build_index - INFO - Start building index
+2024-11-26 17:50:24,145 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:50:24,215 - build_index - INFO - Initializing chat model
+2024-11-26 17:53:01,027 - build_index - INFO - Start building index
+2024-11-26 17:53:01,032 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:53:01,126 - build_index - INFO - Initializing chat model
+2024-11-26 17:53:20,141 - build_index - INFO - Initializing embedding
+2024-11-26 17:53:25,196 - build_index - INFO - Initializing splitter
+2024-11-26 17:53:25,196 - build_index - INFO - Initializing GDS
+2024-11-26 17:53:25,217 - build_index - INFO - Initializing index
+2024-11-26 17:56:22,868 - build_index - INFO - Start building index
+2024-11-26 17:56:22,871 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:56:22,939 - build_index - INFO - Initializing chat model
+2024-11-26 17:56:39,295 - build_index - INFO - Initializing embedding
+2024-11-26 17:56:45,291 - build_index - INFO - Initializing splitter
+2024-11-26 17:56:45,291 - build_index - INFO - Initializing GDS
+2024-11-26 17:56:45,307 - build_index - INFO - Initializing index
+2024-11-26 17:58:41,061 - build_index - INFO - Start building index
+2024-11-26 17:58:41,065 - build_index - INFO - Connecting to Neo4j
+2024-11-26 17:58:41,156 - build_index - INFO - Initializing chat model
+2024-11-26 17:58:55,289 - build_index - INFO - Initializing embedding
+2024-11-26 17:59:00,747 - build_index - INFO - Initializing splitter
+2024-11-26 17:59:00,747 - build_index - INFO - Initializing GDS
+2024-11-26 17:59:00,764 - build_index - INFO - Initializing index
+2024-11-26 17:59:00,784 - build_index - INFO - Building index now!
+2024-11-26 17:59:00,784 - build_index - INFO - Chunking documents
+2024-11-26 18:00:53,958 - build_index - INFO - Start building index
+2024-11-26 18:00:53,962 - build_index - INFO - Connecting to Neo4j
+2024-11-26 18:00:54,042 - build_index - INFO - Initializing chat model
+2024-11-26 18:01:09,640 - build_index - INFO - Initializing embedding
+2024-11-26 18:01:15,182 - build_index - INFO - Initializing splitter
+2024-11-26 18:01:15,182 - build_index - INFO - Initializing GDS
+2024-11-26 18:01:15,207 - build_index - INFO - Initializing index
+2024-11-26 18:01:15,219 - build_index - INFO - Building index now!
+2024-11-26 18:01:15,219 - build_index - INFO - Chunking documents
+2024-11-26 19:19:54,841 - build_index - INFO - Start building index
+2024-11-26 19:19:54,846 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:20:10,153 - build_index - INFO - Initializing chat model
+2024-11-26 19:20:10,221 - build_index - INFO - Initializing embedding
+2024-11-26 19:20:16,778 - build_index - INFO - Initializing splitter
+2024-11-26 19:20:16,778 - build_index - INFO - Initializing GDS
+2024-11-26 19:20:16,792 - build_index - INFO - Initializing index
+2024-11-26 19:20:16,801 - build_index - INFO - Building index now!
+2024-11-26 19:20:57,615 - build_index - INFO - Start building index
+2024-11-26 19:20:57,619 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:20:58,527 - build_index - INFO - Initializing chat model
+2024-11-26 19:20:58,587 - build_index - INFO - Initializing embedding
+2024-11-26 19:21:04,649 - build_index - INFO - Initializing splitter
+2024-11-26 19:21:04,649 - build_index - INFO - Initializing GDS
+2024-11-26 19:21:04,665 - build_index - INFO - Initializing index
+2024-11-26 19:21:04,678 - build_index - INFO - Building index now!
+2024-11-26 19:21:04,678 - build_index - INFO - Chunking documents
+2024-11-26 19:22:16,734 - build_index - INFO - Start building index
+2024-11-26 19:22:16,738 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:22:21,750 - build_index - INFO - Initializing chat model
+2024-11-26 19:22:21,819 - build_index - INFO - Initializing embedding
+2024-11-26 19:22:27,614 - build_index - INFO - Initializing splitter
+2024-11-26 19:22:27,614 - build_index - INFO - Initializing GDS
+2024-11-26 19:22:27,630 - build_index - INFO - Initializing index
+2024-11-26 19:22:27,641 - build_index - INFO - Building index now!
+2024-11-26 19:28:25,200 - build_index - INFO - Start building index
+2024-11-26 19:28:25,207 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:28:25,302 - build_index - INFO - Initializing chat model
+2024-11-26 19:28:49,977 - build_index - INFO - Start building index
+2024-11-26 19:28:49,980 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:28:50,094 - build_index - INFO - Initializing chat model
+2024-11-26 19:29:09,209 - build_index - INFO - Initializing embedding
+2024-11-26 19:29:14,393 - build_index - INFO - Initializing splitter
+2024-11-26 19:29:14,394 - build_index - INFO - Initializing GDS
+2024-11-26 19:29:14,408 - build_index - INFO - Initializing index
+2024-11-26 19:29:14,425 - build_index - INFO - Building index now!
+2024-11-26 19:33:39,829 - build_index - INFO - Start building index
+2024-11-26 19:33:39,835 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:33:39,921 - build_index - INFO - Initializing chat model
+2024-11-26 19:33:49,296 - build_index - INFO - Initializing embedding
+2024-11-26 19:33:54,975 - build_index - INFO - Initializing splitter
+2024-11-26 19:33:54,976 - build_index - INFO - Initializing GDS
+2024-11-26 19:33:54,995 - build_index - INFO - Initializing index
+2024-11-26 19:33:55,004 - build_index - INFO - Building index now!
+2024-11-26 19:56:09,305 - build_index - INFO - Start building index
+2024-11-26 19:56:09,310 - build_index - INFO - Connecting to Neo4j
+2024-11-26 19:56:09,401 - build_index - INFO - Initializing chat model
+2024-11-27 15:38:59,703 - build_index - INFO - Start building index
+2024-11-27 15:38:59,708 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:38:59,820 - build_index - INFO - Initializing chat model
+2024-11-27 15:39:37,924 - build_index - INFO - Start building index
+2024-11-27 15:39:37,930 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:39:38,023 - build_index - INFO - Initializing chat model
+2024-11-27 15:39:58,834 - build_index - INFO - Start building index
+2024-11-27 15:39:58,839 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:39:58,932 - build_index - INFO - Initializing chat model
+2024-11-27 15:46:38,512 - build_index - INFO - Start building index
+2024-11-27 15:46:38,519 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:46:38,604 - build_index - INFO - Initializing chat model
+2024-11-27 15:47:24,345 - build_index - INFO - Start building index
+2024-11-27 15:47:24,352 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:47:24,427 - build_index - INFO - Initializing chat model
+2024-11-27 15:48:44,601 - build_index - INFO - Start building index
+2024-11-27 15:48:44,607 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:48:44,692 - build_index - INFO - Initializing chat model
+2024-11-27 15:49:17,986 - build_index - INFO - Initializing embedding
+2024-11-27 15:49:23,916 - build_index - INFO - Initializing splitter
+2024-11-27 15:49:23,916 - build_index - INFO - Initializing GDS
+2024-11-27 15:49:23,930 - build_index - INFO - Initializing index
+2024-11-27 15:49:23,940 - build_index - INFO - Building index now!
+2024-11-27 15:49:23,941 - build_index - INFO - Chunking documents
+2024-11-27 15:54:20,436 - build_index - INFO - None
+2024-11-27 15:54:20,974 - build_index - INFO - 76 nodes merged
+2024-11-27 15:55:44,524 - build_index - INFO - Index built successfully
+2024-11-27 15:57:37,600 - build_index - INFO - Start building index
+2024-11-27 15:57:37,607 - build_index - INFO - Connecting to Neo4j
+2024-11-27 15:57:37,696 - build_index - INFO - Initializing chat model
+2024-11-27 15:57:47,421 - build_index - INFO - Initializing embedding
+2024-11-27 15:57:53,005 - build_index - INFO - Initializing splitter
+2024-11-27 15:57:53,005 - build_index - INFO - Initializing GDS
+2024-11-27 15:57:53,025 - build_index - INFO - Initializing index
+2024-11-27 15:57:53,039 - build_index - INFO - Building index now!
+2024-11-27 15:57:53,040 - build_index - INFO - Chunking documents
+2024-11-27 16:11:49,150 - build_index - INFO - Start building index
+2024-11-27 16:11:49,155 - build_index - INFO - Connecting to Neo4j
+2024-11-27 16:11:49,247 - build_index - INFO - Initializing chat model
+2024-11-27 16:11:59,511 - build_index - INFO - Initializing embedding
+2024-11-27 16:12:04,741 - build_index - INFO - Initializing splitter
+2024-11-27 16:12:04,742 - build_index - INFO - Initializing GDS
+2024-11-27 16:12:04,759 - build_index - INFO - Initializing index
+2024-11-27 16:45:04,730 - build_index - INFO - Start building index
+2024-11-27 16:45:04,734 - build_index - INFO - Connecting to Neo4j
+2024-11-27 16:45:04,835 - build_index - INFO - Initializing chat model
+2024-11-27 16:45:13,826 - build_index - INFO - Initializing embedding
+2024-11-27 16:45:19,272 - build_index - INFO - Initializing splitter
+2024-11-27 16:45:19,273 - build_index - INFO - Initializing GDS
+2024-11-27 16:45:19,287 - build_index - INFO - Initializing index
+2024-11-27 16:48:11,915 - build_index - INFO - Start building index
+2024-11-27 16:48:11,922 - build_index - INFO - Connecting to Neo4j
+2024-11-27 16:48:12,004 - build_index - INFO - Initializing chat model
+2024-11-27 16:48:21,656 - build_index - INFO - Initializing embedding
+2024-11-27 16:48:27,064 - build_index - INFO - Initializing splitter
+2024-11-27 16:48:27,065 - build_index - INFO - Initializing GDS
+2024-11-27 16:48:27,083 - build_index - INFO - Initializing index
+2024-11-27 16:50:36,285 - build_index - INFO - Start building index
+2024-11-27 16:50:36,291 - build_index - INFO - Connecting to Neo4j
+2024-11-27 16:50:36,414 - build_index - INFO - Initializing chat model
+2024-11-27 16:50:46,283 - build_index - INFO - Initializing embedding
+2024-11-27 16:50:52,377 - build_index - INFO - Initializing splitter
+2024-11-27 16:50:52,378 - build_index - INFO - Initializing GDS
+2024-11-27 16:50:52,391 - build_index - INFO - Initializing index
+2024-11-27 16:53:24,515 - build_index - INFO - Start building index
+2024-11-27 16:53:24,520 - build_index - INFO - Connecting to Neo4j
+2024-11-27 16:53:24,606 - build_index - INFO - Initializing chat model
+2024-11-27 16:53:33,942 - build_index - INFO - Initializing embedding
+2024-11-27 16:53:39,870 - build_index - INFO - Initializing splitter
+2024-11-27 16:53:39,870 - build_index - INFO - Initializing GDS
+2024-11-27 16:53:39,889 - build_index - INFO - Initializing index
+2024-11-27 17:22:08,489 - build_index - INFO - Start building index
+2024-11-27 17:22:08,494 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:22:08,580 - build_index - INFO - Initializing chat model
+2024-11-27 17:22:22,722 - build_index - INFO - Initializing embedding
+2024-11-27 17:22:29,242 - build_index - INFO - Initializing splitter
+2024-11-27 17:22:29,243 - build_index - INFO - Initializing GDS
+2024-11-27 17:22:29,255 - build_index - INFO - Initializing index
+2024-11-27 17:26:25,686 - build_index - INFO - Start building index
+2024-11-27 17:26:25,692 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:26:25,762 - build_index - INFO - Initializing chat model
+2024-11-27 17:26:35,453 - build_index - INFO - Initializing embedding
+2024-11-27 17:26:41,559 - build_index - INFO - Initializing splitter
+2024-11-27 17:26:41,560 - build_index - INFO - Initializing GDS
+2024-11-27 17:26:41,571 - build_index - INFO - Initializing index
+2024-11-27 17:28:40,654 - build_index - INFO - Start building index
+2024-11-27 17:28:40,657 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:28:40,740 - build_index - INFO - Initializing chat model
+2024-11-27 17:28:50,760 - build_index - INFO - Initializing embedding
+2024-11-27 17:28:56,168 - build_index - INFO - Initializing splitter
+2024-11-27 17:28:56,169 - build_index - INFO - Initializing GDS
+2024-11-27 17:28:56,186 - build_index - INFO - Initializing index
+2024-11-27 17:31:11,075 - build_index - INFO - Start building index
+2024-11-27 17:31:11,082 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:31:11,158 - build_index - INFO - Initializing chat model
+2024-11-27 17:31:20,756 - build_index - INFO - Initializing embedding
+2024-11-27 17:31:26,119 - build_index - INFO - Initializing splitter
+2024-11-27 17:31:26,122 - build_index - INFO - Initializing GDS
+2024-11-27 17:31:26,135 - build_index - INFO - Initializing index
+2024-11-27 17:35:22,597 - build_index - INFO - Start building index
+2024-11-27 17:35:22,603 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:35:22,687 - build_index - INFO - Initializing chat model
+2024-11-27 17:35:33,015 - build_index - INFO - Initializing embedding
+2024-11-27 17:35:38,954 - build_index - INFO - Initializing splitter
+2024-11-27 17:35:38,957 - build_index - INFO - Initializing GDS
+2024-11-27 17:35:38,973 - build_index - INFO - Initializing index
+2024-11-27 17:39:45,753 - build_index - INFO - Start building index
+2024-11-27 17:39:45,758 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:39:45,847 - build_index - INFO - Initializing chat model
+2024-11-27 17:39:54,926 - build_index - INFO - Initializing embedding
+2024-11-27 17:39:59,959 - build_index - INFO - Initializing splitter
+2024-11-27 17:39:59,960 - build_index - INFO - Initializing GDS
+2024-11-27 17:39:59,976 - build_index - INFO - Initializing index
+2024-11-27 17:53:22,940 - build_index - INFO - Start building index
+2024-11-27 17:53:22,944 - build_index - INFO - Connecting to Neo4j
+2024-11-27 17:53:23,040 - build_index - INFO - Initializing chat model
+2024-11-27 17:53:32,284 - build_index - INFO - Initializing embedding
+2024-11-27 17:53:37,421 - build_index - INFO - Initializing splitter
+2024-11-27 17:53:37,422 - build_index - INFO - Initializing GDS
+2024-11-27 17:53:37,436 - build_index - INFO - Initializing index
+2024-11-27 18:00:21,963 - build_index - INFO - Start building index
+2024-11-27 18:00:21,968 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:00:22,062 - build_index - INFO - Initializing chat model
+2024-11-27 18:00:31,137 - build_index - INFO - Initializing embedding
+2024-11-27 18:00:36,304 - build_index - INFO - Initializing splitter
+2024-11-27 18:00:36,304 - build_index - INFO - Initializing GDS
+2024-11-27 18:00:36,320 - build_index - INFO - Initializing index
+2024-11-27 18:13:29,143 - build_index - INFO - Start building index
+2024-11-27 18:13:29,149 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:13:29,237 - build_index - INFO - Initializing chat model
+2024-11-27 18:13:38,381 - build_index - INFO - Initializing embedding
+2024-11-27 18:13:43,803 - build_index - INFO - Initializing splitter
+2024-11-27 18:13:43,804 - build_index - INFO - Initializing GDS
+2024-11-27 18:13:43,822 - build_index - INFO - Initializing index
+2024-11-27 18:21:01,468 - build_index - INFO - Start building index
+2024-11-27 18:21:01,473 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:21:01,559 - build_index - INFO - Initializing chat model
+2024-11-27 18:21:10,604 - build_index - INFO - Initializing embedding
+2024-11-27 18:21:15,706 - build_index - INFO - Initializing splitter
+2024-11-27 18:21:15,708 - build_index - INFO - Initializing GDS
+2024-11-27 18:21:15,727 - build_index - INFO - Initializing index
+2024-11-27 18:28:37,643 - build_index - INFO - Start building index
+2024-11-27 18:28:37,647 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:28:37,733 - build_index - INFO - Initializing chat model
+2024-11-27 18:28:46,870 - build_index - INFO - Initializing embedding
+2024-11-27 18:28:52,600 - build_index - INFO - Initializing splitter
+2024-11-27 18:28:52,600 - build_index - INFO - Initializing GDS
+2024-11-27 18:28:52,613 - build_index - INFO - Initializing index
+2024-11-27 18:31:30,272 - build_index - INFO - Start building index
+2024-11-27 18:31:30,279 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:31:30,361 - build_index - INFO - Initializing chat model
+2024-11-27 18:31:38,960 - build_index - INFO - Initializing embedding
+2024-11-27 18:31:44,430 - build_index - INFO - Initializing splitter
+2024-11-27 18:31:44,430 - build_index - INFO - Initializing GDS
+2024-11-27 18:31:44,440 - build_index - INFO - Initializing index
+2024-11-27 18:36:30,250 - build_index - INFO - Start building index
+2024-11-27 18:36:30,256 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:36:30,352 - build_index - INFO - Initializing chat model
+2024-11-27 18:36:39,474 - build_index - INFO - Initializing embedding
+2024-11-27 18:36:44,792 - build_index - INFO - Initializing splitter
+2024-11-27 18:36:44,792 - build_index - INFO - Initializing GDS
+2024-11-27 18:36:44,809 - build_index - INFO - Initializing index
+2024-11-27 18:40:29,293 - build_index - INFO - Start building index
+2024-11-27 18:40:29,297 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:40:29,386 - build_index - INFO - Initializing chat model
+2024-11-27 18:40:38,948 - build_index - INFO - Initializing embedding
+2024-11-27 18:40:44,261 - build_index - INFO - Initializing splitter
+2024-11-27 18:40:44,262 - build_index - INFO - Initializing GDS
+2024-11-27 18:40:44,277 - build_index - INFO - Initializing index
+2024-11-27 18:46:20,376 - build_index - INFO - Start building index
+2024-11-27 18:46:20,381 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:46:20,539 - build_index - INFO - Initializing chat model
+2024-11-27 18:46:29,440 - build_index - INFO - Initializing embedding
+2024-11-27 18:46:34,900 - build_index - INFO - Initializing splitter
+2024-11-27 18:46:34,904 - build_index - INFO - Initializing GDS
+2024-11-27 18:46:34,949 - build_index - INFO - Initializing index
+2024-11-27 18:46:34,955 - build_index - INFO - Building index now!
+2024-11-27 18:46:34,956 - build_index - INFO - Chunking documents
+2024-11-27 18:50:23,332 - build_index - INFO - Start building index
+2024-11-27 18:50:23,337 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:50:23,357 - build_index - INFO - Initializing chat model
+2024-11-27 18:50:33,206 - build_index - INFO - Initializing embedding
+2024-11-27 18:50:38,077 - build_index - INFO - Initializing splitter
+2024-11-27 18:50:38,079 - build_index - INFO - Initializing GDS
+2024-11-27 18:50:38,092 - build_index - INFO - Initializing index
+2024-11-27 18:52:14,399 - build_index - INFO - Start building index
+2024-11-27 18:52:14,404 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:52:14,431 - build_index - INFO - Initializing chat model
+2024-11-27 18:52:23,457 - build_index - INFO - Initializing embedding
+2024-11-27 18:52:28,450 - build_index - INFO - Initializing splitter
+2024-11-27 18:52:28,450 - build_index - INFO - Initializing GDS
+2024-11-27 18:52:28,466 - build_index - INFO - Initializing index
+2024-11-27 18:53:04,926 - build_index - INFO - Start building index
+2024-11-27 18:53:04,932 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:53:04,956 - build_index - INFO - Initializing chat model
+2024-11-27 18:53:13,685 - build_index - INFO - Initializing embedding
+2024-11-27 18:53:19,011 - build_index - INFO - Initializing splitter
+2024-11-27 18:53:19,011 - build_index - INFO - Initializing GDS
+2024-11-27 18:53:19,027 - build_index - INFO - Initializing index
+2024-11-27 18:55:17,198 - build_index - INFO - Start building index
+2024-11-27 18:55:17,203 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:55:17,225 - build_index - INFO - Initializing chat model
+2024-11-27 18:55:26,237 - build_index - INFO - Initializing embedding
+2024-11-27 18:55:31,408 - build_index - INFO - Initializing splitter
+2024-11-27 18:55:31,408 - build_index - INFO - Initializing GDS
+2024-11-27 18:55:31,423 - build_index - INFO - Initializing index
+2024-11-27 18:56:36,139 - build_index - INFO - Start building index
+2024-11-27 18:56:36,145 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:56:36,173 - build_index - INFO - Initializing chat model
+2024-11-27 18:56:44,847 - build_index - INFO - Initializing embedding
+2024-11-27 18:56:49,770 - build_index - INFO - Initializing splitter
+2024-11-27 18:56:49,771 - build_index - INFO - Initializing GDS
+2024-11-27 18:56:49,787 - build_index - INFO - Initializing index
+2024-11-27 18:57:42,954 - build_index - INFO - Start building index
+2024-11-27 18:57:42,961 - build_index - INFO - Connecting to Neo4j
+2024-11-27 18:57:42,989 - build_index - INFO - Initializing chat model
+2024-11-27 18:57:52,303 - build_index - INFO - Initializing embedding
+2024-11-27 18:57:57,542 - build_index - INFO - Initializing splitter
+2024-11-27 18:57:57,543 - build_index - INFO - Initializing GDS
+2024-11-27 18:57:57,559 - build_index - INFO - Initializing index
+2024-11-27 19:06:09,582 - build_index - INFO - Start building index
+2024-11-27 19:06:09,587 - build_index - INFO - Connecting to Neo4j
+2024-11-27 19:06:09,608 - build_index - INFO - Initializing chat model
+2024-11-27 19:06:18,464 - build_index - INFO - Initializing embedding
+2024-11-27 19:06:23,628 - build_index - INFO - Initializing splitter
+2024-11-27 19:06:23,630 - build_index - INFO - Initializing GDS
+2024-11-27 19:06:23,647 - build_index - INFO - Initializing index
+2024-11-27 19:06:57,679 - build_index - INFO - Building index now!
+2024-11-27 19:06:57,683 - build_index - INFO - Chunking documents
+2024-11-27 19:17:59,354 - build_index - INFO - Start building index
+2024-11-27 19:17:59,360 - build_index - ERROR - 目前只支持openai,hf
+2024-11-27 19:18:22,893 - build_index - INFO - Start building index
+2024-11-27 19:18:22,894 - build_index - INFO - Connecting to Neo4j
+2024-11-27 19:18:22,924 - build_index - INFO - Initializing chat model
+2024-11-27 19:22:55,011 - build_index - INFO - Start building index
+2024-11-27 19:22:55,017 - build_index - INFO - Connecting to Neo4j
+2024-11-27 19:22:55,040 - build_index - INFO - Initializing chat model
+2024-11-27 19:22:55,128 - build_index - INFO - Initializing embedding
+2024-11-27 19:23:01,763 - build_index - INFO - Initializing splitter
+2024-11-27 19:23:01,763 - build_index - INFO - Initializing GDS
+2024-11-27 19:23:01,777 - build_index - INFO - Initializing index
+2024-11-27 19:23:03,430 - build_index - INFO - Building index now!
+2024-11-27 19:23:03,430 - build_index - INFO - Chunking documents
+2024-11-27 19:25:04,123 - build_index - INFO - Start building index
+2024-11-27 19:25:04,128 - build_index - INFO - Connecting to Neo4j
+2024-11-27 19:25:04,151 - build_index - INFO - Initializing chat model
+2024-11-27 19:25:04,206 - build_index - INFO - Initializing embedding
+2024-11-27 19:25:10,355 - build_index - INFO - Initializing splitter
+2024-11-27 19:25:10,355 - build_index - INFO - Initializing GDS
+2024-11-27 19:25:10,365 - build_index - INFO - Initializing index
+2024-11-27 21:16:05,607 - build_index - INFO - Start building index
+2024-11-27 21:16:05,612 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:16:05,640 - build_index - INFO - Initializing chat model
+2024-11-27 21:16:05,694 - build_index - INFO - Initializing embedding
+2024-11-27 21:16:12,629 - build_index - INFO - Initializing splitter
+2024-11-27 21:16:12,629 - build_index - INFO - Initializing GDS
+2024-11-27 21:16:12,640 - build_index - INFO - Initializing index
+2024-11-27 21:16:12,641 - build_index - INFO - Building index now!
+2024-11-27 21:16:12,641 - build_index - INFO - Chunking documents
+2024-11-27 21:18:17,197 - build_index - INFO - Start building index
+2024-11-27 21:18:17,202 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:18:17,227 - build_index - INFO - Initializing chat model
+2024-11-27 21:18:17,282 - build_index - INFO - Initializing embedding
+2024-11-27 21:18:23,074 - build_index - INFO - Initializing splitter
+2024-11-27 21:18:23,075 - build_index - INFO - Initializing GDS
+2024-11-27 21:18:23,085 - build_index - INFO - Initializing index
+2024-11-27 21:18:23,085 - build_index - INFO - Building index now!
+2024-11-27 21:18:23,085 - build_index - INFO - Chunking documents
+2024-11-27 21:20:44,548 - build_index - INFO - Start building index
+2024-11-27 21:20:44,553 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:20:44,572 - build_index - INFO - Initializing chat model
+2024-11-27 21:20:44,630 - build_index - INFO - Initializing embedding
+2024-11-27 21:20:50,684 - build_index - INFO - Initializing splitter
+2024-11-27 21:20:50,684 - build_index - INFO - Initializing GDS
+2024-11-27 21:20:50,698 - build_index - INFO - Initializing index
+2024-11-27 21:20:50,698 - build_index - INFO - Building index now!
+2024-11-27 21:20:50,698 - build_index - INFO - Chunking documents
+2024-11-27 21:25:58,544 - build_index - INFO - Start building index
+2024-11-27 21:25:58,547 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:25:58,580 - build_index - INFO - Initializing chat model
+2024-11-27 21:25:58,634 - build_index - INFO - Initializing embedding
+2024-11-27 21:26:04,300 - build_index - INFO - Initializing splitter
+2024-11-27 21:26:04,301 - build_index - INFO - Initializing GDS
+2024-11-27 21:26:04,309 - build_index - INFO - Initializing index
+2024-11-27 21:26:04,310 - build_index - INFO - Building index now!
+2024-11-27 21:26:04,310 - build_index - INFO - Chunking documents
+2024-11-27 21:26:43,405 - build_index - INFO - Start building index
+2024-11-27 21:26:43,410 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:26:43,432 - build_index - INFO - Initializing chat model
+2024-11-27 21:26:43,496 - build_index - INFO - Initializing embedding
+2024-11-27 21:26:48,893 - build_index - INFO - Initializing splitter
+2024-11-27 21:26:48,893 - build_index - INFO - Initializing GDS
+2024-11-27 21:26:48,904 - build_index - INFO - Initializing index
+2024-11-27 21:26:48,905 - build_index - INFO - Building index now!
+2024-11-27 21:26:48,905 - build_index - INFO - Start building index
+2024-11-27 21:26:48,906 - build_index - INFO - Chunking documents
+2024-11-27 21:31:41,877 - build_index - ERROR - ```json
+{
+  "nodes":...不是一个合法的 Json
+2024-11-27 21:54:10,171 - build_index - INFO - Start building index
+2024-11-27 21:54:10,176 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:54:10,206 - build_index - INFO - Initializing chat model
+2024-11-27 21:54:10,259 - build_index - INFO - Initializing embedding
+2024-11-27 21:54:16,612 - build_index - INFO - Initializing splitter
+2024-11-27 21:54:16,612 - build_index - INFO - Initializing GDS
+2024-11-27 21:54:16,628 - build_index - INFO - Initializing index
+2024-11-27 21:54:16,628 - build_index - INFO - Building index now!
+2024-11-27 21:54:16,628 - build_index - INFO - Create_nodes_and_relationships
+2024-11-27 21:54:16,629 - build_index - INFO - Chunking documents
+2024-11-27 21:55:21,171 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,176 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,178 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,180 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,182 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,183 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,184 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,185 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,186 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,188 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:55:21,189 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-27 21:56:50,070 - build_index - INFO - Start building index
+2024-11-27 21:56:50,075 - build_index - INFO - Connecting to Neo4j
+2024-11-27 21:56:50,100 - build_index - INFO - Initializing chat model
+2024-11-27 21:56:50,159 - build_index - INFO - Initializing embedding
+2024-11-27 21:56:55,922 - build_index - INFO - Initializing splitter
+2024-11-27 21:56:55,922 - build_index - INFO - Initializing GDS
+2024-11-27 21:56:55,933 - build_index - INFO - Initializing index
+2024-11-27 21:56:55,933 - build_index - INFO - Building index now!
+2024-11-27 21:56:55,933 - build_index - INFO - Create_nodes_and_relationships
+2024-11-27 21:56:55,934 - build_index - INFO - Chunking documents
+2024-11-28 19:17:59,906 - build_index - INFO - Start building index
+2024-11-28 19:17:59,913 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:17:59,944 - build_index - INFO - Initializing chat model
+2024-11-28 19:18:00,001 - build_index - INFO - Initializing embedding
+2024-11-28 19:18:06,162 - build_index - INFO - Initializing splitter
+2024-11-28 19:18:06,163 - build_index - INFO - Initializing GDS
+2024-11-28 19:18:06,173 - build_index - INFO - Initializing index
+2024-11-28 19:18:06,173 - build_index - INFO - Building index now!
+2024-11-28 19:18:06,173 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:18:06,173 - build_index - INFO - Chunking documents
+2024-11-28 19:19:38,126 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:22:00,757 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:25:24,348 - build_index - INFO - Start building index
+2024-11-28 19:25:24,352 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:25:24,373 - build_index - INFO - Initializing chat model
+2024-11-28 19:25:24,441 - build_index - INFO - Initializing embedding
+2024-11-28 19:25:30,723 - build_index - INFO - Initializing splitter
+2024-11-28 19:25:30,724 - build_index - INFO - Initializing GDS
+2024-11-28 19:25:30,735 - build_index - INFO - Initializing index
+2024-11-28 19:25:30,735 - build_index - INFO - Building index now!
+2024-11-28 19:25:30,736 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:25:30,736 - build_index - INFO - Chunking documents
+2024-11-28 19:25:57,604 - build_index - INFO - Start building index
+2024-11-28 19:25:57,609 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:25:57,631 - build_index - INFO - Initializing chat model
+2024-11-28 19:25:57,686 - build_index - INFO - Initializing embedding
+2024-11-28 19:26:03,827 - build_index - INFO - Initializing splitter
+2024-11-28 19:26:03,828 - build_index - INFO - Initializing GDS
+2024-11-28 19:26:03,837 - build_index - INFO - Initializing index
+2024-11-28 19:26:03,837 - build_index - INFO - Building index now!
+2024-11-28 19:26:03,837 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:26:03,837 - build_index - INFO - Chunking documents
+2024-11-28 19:27:21,921 - build_index - INFO - Start building index
+2024-11-28 19:27:21,926 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:27:21,947 - build_index - INFO - Initializing chat model
+2024-11-28 19:27:22,002 - build_index - INFO - Initializing embedding
+2024-11-28 19:27:28,430 - build_index - INFO - Initializing splitter
+2024-11-28 19:27:28,430 - build_index - INFO - Initializing GDS
+2024-11-28 19:27:28,443 - build_index - INFO - Initializing index
+2024-11-28 19:27:28,444 - build_index - INFO - Building index now!
+2024-11-28 19:27:28,444 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:27:28,444 - build_index - INFO - Chunking documents
+2024-11-28 19:28:16,926 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:29:34,121 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:29:41,073 - build_index - INFO - Start building index
+2024-11-28 19:29:41,079 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:29:41,101 - build_index - INFO - Initializing chat model
+2024-11-28 19:29:41,154 - build_index - INFO - Initializing embedding
+2024-11-28 19:29:47,396 - build_index - INFO - Initializing splitter
+2024-11-28 19:29:47,396 - build_index - INFO - Initializing GDS
+2024-11-28 19:29:47,408 - build_index - INFO - Initializing index
+2024-11-28 19:29:47,408 - build_index - INFO - Building index now!
+2024-11-28 19:29:47,408 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:29:47,408 - build_index - INFO - Chunking documents
+2024-11-28 19:31:00,430 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:31:02,214 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:33:12,127 - build_index - INFO - Start building index
+2024-11-28 19:33:12,131 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:33:12,152 - build_index - INFO - Initializing chat model
+2024-11-28 19:33:12,209 - build_index - INFO - Initializing embedding
+2024-11-28 19:33:18,265 - build_index - INFO - Initializing splitter
+2024-11-28 19:33:18,265 - build_index - INFO - Initializing GDS
+2024-11-28 19:33:18,277 - build_index - INFO - Initializing index
+2024-11-28 19:33:18,278 - build_index - INFO - Building index now!
+2024-11-28 19:33:18,278 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:33:18,278 - build_index - INFO - Chunking documents
+2024-11-28 19:33:36,725 - build_index - INFO - Start building index
+2024-11-28 19:33:36,726 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:33:36,745 - build_index - INFO - Initializing chat model
+2024-11-28 19:33:36,817 - build_index - INFO - Initializing embedding
+2024-11-28 19:33:42,784 - build_index - INFO - Initializing splitter
+2024-11-28 19:33:42,786 - build_index - INFO - Initializing GDS
+2024-11-28 19:33:42,796 - build_index - INFO - Initializing index
+2024-11-28 19:33:42,797 - build_index - INFO - Building index now!
+2024-11-28 19:33:42,797 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:33:42,797 - build_index - INFO - Chunking documents
+2024-11-28 19:34:50,773 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 19:34:52,850 - build_index - INFO - None
+2024-11-28 19:34:59,600 - build_index - INFO - Start building index
+2024-11-28 19:34:59,603 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:34:59,635 - build_index - INFO - Initializing chat model
+2024-11-28 19:34:59,690 - build_index - INFO - Initializing embedding
+2024-11-28 19:35:08,152 - build_index - INFO - Initializing splitter
+2024-11-28 19:35:08,152 - build_index - INFO - Initializing GDS
+2024-11-28 19:35:08,190 - build_index - INFO - Initializing index
+2024-11-28 19:35:08,191 - build_index - INFO - Building index now!
+2024-11-28 19:35:08,191 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:35:08,191 - build_index - INFO - Chunking documents
+2024-11-28 19:36:50,938 - build_index - ERROR - 模型没法进行这条任务的实体解析
+2024-11-28 19:36:51,264 - build_index - ERROR - 模型没法进行这条任务的实体解析
+2024-11-28 19:36:51,728 - build_index - ERROR - 模型没法进行这条任务的实体解析
+2024-11-28 19:36:51,783 - build_index - INFO - None
+2024-11-28 19:36:52,008 - build_index - INFO - 104 nodes merged
+2024-11-28 19:43:17,314 - build_index - INFO - Start building index
+2024-11-28 19:43:17,318 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:43:18,939 - build_index - INFO - Initializing chat model
+2024-11-28 19:43:19,025 - build_index - INFO - Initializing embedding
+2024-11-28 19:43:24,815 - build_index - INFO - Initializing splitter
+2024-11-28 19:43:24,816 - build_index - INFO - Initializing GDS
+2024-11-28 19:43:24,824 - build_index - INFO - Initializing index
+2024-11-28 19:43:24,826 - build_index - INFO - Building index now!
+2024-11-28 19:43:24,826 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:43:24,826 - build_index - INFO - Chunking documents
+2024-11-28 19:47:59,182 - build_index - INFO - Start building index
+2024-11-28 19:47:59,187 - build_index - INFO - Connecting to Neo4j
+2024-11-28 19:47:59,210 - build_index - INFO - Initializing chat model
+2024-11-28 19:47:59,305 - build_index - INFO - Initializing embedding
+2024-11-28 19:48:07,018 - build_index - INFO - Initializing splitter
+2024-11-28 19:48:07,019 - build_index - INFO - Initializing GDS
+2024-11-28 19:48:07,030 - build_index - INFO - Initializing index
+2024-11-28 19:48:07,031 - build_index - INFO - Building index now!
+2024-11-28 19:48:07,031 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 19:48:07,031 - build_index - INFO - Chunking documents
+2024-11-28 20:00:59,145 - build_index - INFO - Start building index
+2024-11-28 20:00:59,149 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:00:59,180 - build_index - INFO - Initializing chat model
+2024-11-28 20:00:59,238 - build_index - INFO - Initializing embedding
+2024-11-28 20:01:05,761 - build_index - INFO - Initializing splitter
+2024-11-28 20:01:05,762 - build_index - INFO - Initializing GDS
+2024-11-28 20:01:05,769 - build_index - INFO - Initializing index
+2024-11-28 20:01:05,769 - build_index - INFO - Building index now!
+2024-11-28 20:01:05,770 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:01:05,770 - build_index - INFO - Chunking documents
+2024-11-28 20:07:38,053 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:43,435 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:46,243 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:50,135 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:51,310 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:51,491 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:52,302 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:52,472 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:52,642 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:07:52,804 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:08:06,078 - build_index - INFO - Start building index
+2024-11-28 20:08:06,081 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:08:06,098 - build_index - INFO - Initializing chat model
+2024-11-28 20:08:06,152 - build_index - INFO - Initializing embedding
+2024-11-28 20:08:12,337 - build_index - INFO - Initializing splitter
+2024-11-28 20:08:12,338 - build_index - INFO - Initializing GDS
+2024-11-28 20:08:12,350 - build_index - INFO - Initializing index
+2024-11-28 20:08:12,351 - build_index - INFO - Building index now!
+2024-11-28 20:08:12,351 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:08:12,352 - build_index - INFO - Chunking documents
+2024-11-28 20:09:49,913 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:09:49,918 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:09:49,920 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:09:49,924 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:37:28,154 - build_index - INFO - Start building index
+2024-11-28 20:37:28,160 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:37:57,323 - build_index - INFO - Initializing chat model
+2024-11-28 20:37:57,377 - build_index - INFO - Initializing embedding
+2024-11-28 20:38:03,272 - build_index - INFO - Initializing splitter
+2024-11-28 20:38:03,274 - build_index - INFO - Initializing GDS
+2024-11-28 20:38:03,318 - build_index - INFO - Initializing index
+2024-11-28 20:38:03,319 - build_index - INFO - Building index now!
+2024-11-28 20:38:03,319 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:38:03,319 - build_index - INFO - Chunking documents
+2024-11-28 20:38:45,183 - build_index - INFO - None
+2024-11-28 20:38:45,447 - build_index - INFO - 44 nodes merged
+2024-11-28 20:38:52,067 - build_index - INFO - Index built successfully
+2024-11-28 20:47:35,215 - build_index - INFO - Start building index
+2024-11-28 20:47:35,219 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:47:35,379 - build_index - INFO - Initializing chat model
+2024-11-28 20:47:35,453 - build_index - INFO - Initializing embedding
+2024-11-28 20:47:42,616 - build_index - INFO - Initializing splitter
+2024-11-28 20:47:42,617 - build_index - INFO - Initializing GDS
+2024-11-28 20:47:42,646 - build_index - INFO - Initializing index
+2024-11-28 20:47:42,646 - build_index - INFO - Building index now!
+2024-11-28 20:47:42,647 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:47:42,647 - build_index - INFO - Chunking documents
+2024-11-28 20:49:16,020 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:49:16,025 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:49:16,027 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:49:16,031 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:49:48,687 - build_index - INFO - None
+2024-11-28 20:49:48,855 - build_index - INFO - 84 nodes merged
+2024-11-28 20:50:19,571 - build_index - INFO - Index built successfully
+2024-11-28 20:51:36,090 - build_index - INFO - Start building index
+2024-11-28 20:51:36,094 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:51:36,231 - build_index - INFO - Initializing chat model
+2024-11-28 20:52:03,682 - build_index - INFO - Start building index
+2024-11-28 20:52:03,683 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:52:03,700 - build_index - INFO - Initializing chat model
+2024-11-28 20:52:12,767 - build_index - INFO - Initializing embedding
+2024-11-28 20:52:17,901 - build_index - INFO - Initializing splitter
+2024-11-28 20:52:17,903 - build_index - INFO - Initializing GDS
+2024-11-28 20:52:17,934 - build_index - INFO - Initializing index
+2024-11-28 20:52:17,935 - build_index - INFO - Building index now!
+2024-11-28 20:52:17,935 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:52:17,935 - build_index - INFO - Chunking documents
+2024-11-28 20:55:20,998 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,004 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,006 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,007 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,008 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,010 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,012 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,013 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,014 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,015 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 20:55:21,811 - build_index - INFO - None
+2024-11-28 20:55:22,146 - build_index - INFO - 6 nodes merged
+2024-11-28 20:55:26,850 - build_index - INFO - Index built successfully
+2024-11-28 20:57:07,398 - build_index - INFO - Start building index
+2024-11-28 20:57:07,402 - build_index - INFO - Connecting to Neo4j
+2024-11-28 20:57:07,441 - build_index - INFO - Initializing chat model
+2024-11-28 20:57:17,702 - build_index - INFO - Initializing embedding
+2024-11-28 20:57:23,980 - build_index - INFO - Initializing splitter
+2024-11-28 20:57:23,980 - build_index - INFO - Initializing GDS
+2024-11-28 20:57:23,997 - build_index - INFO - Initializing index
+2024-11-28 20:57:23,997 - build_index - INFO - Building index now!
+2024-11-28 20:57:23,997 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 20:57:23,997 - build_index - INFO - Chunking documents
+2024-11-28 21:04:04,549 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:08,310 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:09,591 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:09,776 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:09,946 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,106 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,259 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,419 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,578 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,735 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:10,895 - build_index - ERROR - ```json
+{
+  "head": ...不是一个合法的 Json
+2024-11-28 21:04:23,019 - build_index - INFO - Start building index
+2024-11-28 21:04:23,023 - build_index - INFO - Connecting to Neo4j
+2024-11-28 21:04:23,053 - build_index - INFO - Initializing chat model
+2024-11-28 21:04:32,215 - build_index - INFO - Initializing embedding
+2024-11-28 21:04:37,683 - build_index - INFO - Initializing splitter
+2024-11-28 21:04:37,683 - build_index - INFO - Initializing GDS
+2024-11-28 21:04:37,697 - build_index - INFO - Initializing index
+2024-11-28 21:04:37,697 - build_index - INFO - Building index now!
+2024-11-28 21:04:37,697 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 21:04:37,697 - build_index - INFO - Chunking documents
+2024-11-28 21:08:45,257 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,059 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,227 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,398 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,559 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,721 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:47,892 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:08:48,055 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:10:12,876 - build_index - INFO - Start building index
+2024-11-28 21:10:12,880 - build_index - INFO - Connecting to Neo4j
+2024-11-28 21:10:12,905 - build_index - INFO - Initializing chat model
+2024-11-28 21:10:21,153 - build_index - INFO - Initializing embedding
+2024-11-28 21:10:25,984 - build_index - INFO - Initializing splitter
+2024-11-28 21:10:25,984 - build_index - INFO - Initializing GDS
+2024-11-28 21:10:25,991 - build_index - INFO - Initializing index
+2024-11-28 21:10:25,992 - build_index - INFO - Building index now!
+2024-11-28 21:10:25,992 - build_index - INFO - Create_nodes_and_relationships
+2024-11-28 21:10:25,992 - build_index - INFO - Chunking documents
+2024-11-28 21:15:06,719 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:15:09,765 - build_index - ERROR - 不是一个合法的Json
+2024-11-28 21:15:13,253 - build_index - INFO - None
+2024-11-28 21:15:13,621 - build_index - INFO - 110 nodes merged
+2024-11-28 21:16:35,372 - build_index - INFO - Index built successfully

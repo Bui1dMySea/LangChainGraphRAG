@@ -24,7 +24,7 @@ class LocalSearcher(object):
                     uuid:str= None,
                     top_k:int=15,
                     level:int=1,
-                    # model_provider:Literal['openai','ollama'],
+                    # model_provider:Literal['openai','ollama','hf']='openai',
                     # model_name:str,
                     # api_key:str,
                     # base_url:str,
@@ -71,10 +71,8 @@ class GlobalSearcher(object):
                 *args,
                 **kwargs
             ):
-        # assert model_provider != 'ollama', 'Ollama is not supported yet'
         cwc = CommunityWeightCalculator()
         token_counter = TiktokenCounter()
-        # llm = ChatOpenAI(model=model_name,base_url=base_url, api_key=api_key)
         kpg_prompt_builder = key_points_generator.KeyPointsGeneratorPromptBuilder()
         kpg_context_builder = key_points_generator.CommunityReportContextBuilder(level, cwc, uuid, graph,token_counter,max_tokens)
 
