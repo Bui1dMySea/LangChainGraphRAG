@@ -109,8 +109,7 @@ async def build_index():
     except Exception as e:
         logger.error(
                      f"Meet error {e} when connecting to Neo4j \n" 
-                     "Failed to connect to Neo4j"
-                     f"URI: {args.neo4j_uri}, Username: {args.neo4j_username}, Password: {args.neo4j_password}"
+                     "Failed to connect to Neo4j. Please check your connection settings."
         )
         return
     
